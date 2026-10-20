@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import authRoutes from './routes/auth.routes.js';
+import developerRoutes from './routes/developer.routes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { apiRateLimiter } from './middleware/rateLimiter.js';
 import { env } from './config/env.js';
@@ -31,6 +32,7 @@ app.use('/api', apiRateLimiter);
 
 // Route modules
 app.use('/api/auth', authRoutes);
+app.use('/api/developers', developerRoutes);
 
 // Fallback 404 handler for unknown routes
 app.use((_req, res) => {
