@@ -6,8 +6,8 @@ export interface TokenPayload {
   email: string;
 }
 
-export function generateToken(payload: TokenPayload, expiresIn = '7d'): string {
-  return jwt.sign(payload, env.JWT_SECRET, { expiresIn });
+export function generateToken(payload: TokenPayload, expiresIn: string | number = '7d'): string {
+  return jwt.sign(payload, env.JWT_SECRET, { expiresIn: expiresIn as any });
 }
 
 export function verifyToken(token: string): TokenPayload {
