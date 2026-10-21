@@ -94,12 +94,15 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-3">
             {user ? (
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-200 shadow-sm hover:border-indigo-500/40 transition-all duration-200 group">
+                <div 
+                  className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-200 shadow-sm hover:border-indigo-500/40 transition-all duration-200 group cursor-default"
+                  title={user.email}
+                >
                   <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 text-white flex items-center justify-center font-bold text-[11px] shadow-sm shadow-indigo-500/30 group-hover:scale-105 transition-transform">
                     {user.email ? user.email.charAt(0).toUpperCase() : 'U'}
                   </div>
-                  <span className="font-medium text-slate-200 text-xs max-w-[220px] truncate">
-                    {user.email}
+                  <span className="font-semibold text-slate-200 text-xs max-w-[140px] truncate">
+                    {user.email ? user.email.split('@')[0] : 'Developer'}
                   </span>
                 </div>
                 <button
@@ -154,7 +157,7 @@ export const Navbar: React.FC = () => {
                 <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 text-white flex items-center justify-center font-bold text-[11px] shrink-0 shadow-sm shadow-indigo-500/25">
                   {user.email ? user.email.charAt(0).toUpperCase() : 'U'}
                 </div>
-                <span className="truncate font-medium text-slate-200">{user.email}</span>
+                <span className="truncate font-semibold text-slate-200">{user.email ? user.email.split('@')[0] : 'Developer'}</span>
               </div>
               <div className="space-y-1">
                 {navLinks.map((link) => {
