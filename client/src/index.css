@@ -212,7 +212,22 @@
   border-radius: 0.75rem;
   padding: 1.5px;
   overflow: hidden;
+  background: #cbd5e1; /* crisp slate-300 border in light mode */
   transition: all 0.25s ease;
+}
+
+.dark .field-border-wrapper {
+  background: #334155; /* slate-700 border in dark mode */
+}
+
+.field-border-wrapper:focus-within {
+  background: #a5b4fc;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+.dark .field-border-wrapper:focus-within {
+  background: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
 }
 
 .field-border-runner {
@@ -224,17 +239,18 @@
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 260deg,
-    rgba(99, 102, 241, 0.4) 290deg,
+    transparent 240deg,
+    rgba(99, 102, 241, 0.5) 280deg,
     #6366f1 315deg,
     #818cf8 335deg,
-    #38bdf8 350deg,
+    #38bdf8 355deg,
     transparent 360deg
   );
-  animation: borderBeamRotate 4s linear infinite;
+  animation: borderBeamRotate 3.5s linear infinite;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.25s ease;
+  z-index: 1;
 }
 
 .field-border-glow {
@@ -246,16 +262,17 @@
   background: conic-gradient(
     from 0deg,
     transparent 0deg,
-    transparent 270deg,
-    rgba(99, 102, 241, 0.6) 310deg,
+    transparent 260deg,
+    rgba(99, 102, 241, 0.7) 305deg,
     #38bdf8 345deg,
     transparent 360deg
   );
-  animation: borderBeamRotate 4s linear infinite;
-  filter: blur(3px);
+  animation: borderBeamRotate 3.5s linear infinite;
+  filter: blur(4px);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.25s ease;
+  z-index: 1;
 }
 
 .field-border-wrapper:focus-within .field-border-runner {
@@ -263,11 +280,27 @@
 }
 
 .field-border-wrapper:focus-within .field-border-glow {
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
-.field-border-wrapper:focus-within .field-inner {
-  border-color: transparent !important;
+/* Chrome/Safari/Edge Autofill Seamless Appearance */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset !important;
+  -webkit-text-fill-color: #0f172a !important;
+  caret-color: #0f172a !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover, 
+.dark input:-webkit-autofill:focus, 
+.dark input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #0f172a inset !important;
+  -webkit-text-fill-color: #f8fafc !important;
+  caret-color: #f8fafc !important;
 }
 
 /* Shimmer animated gradient text */

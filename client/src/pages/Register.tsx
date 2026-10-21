@@ -185,7 +185,7 @@ export const Register: React.FC = () => {
                     <div className="field-border-glow" />
                     <div className="field-border-runner" />
 
-                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 transition-colors shadow-sm">
+                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900 transition-colors shadow-sm">
                       <div className="pl-3.5 pr-2 flex items-center pointer-events-none text-slate-400">
                         <Mail className="w-4 h-4" />
                       </div>
@@ -215,7 +215,7 @@ export const Register: React.FC = () => {
                     <div className="field-border-glow" />
                     <div className="field-border-runner" />
 
-                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 transition-colors shadow-sm">
+                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900 transition-colors shadow-sm">
                       <div className="pl-3.5 pr-2 flex items-center pointer-events-none text-slate-400">
                         <Lock className="w-4 h-4" />
                       </div>
@@ -251,7 +251,7 @@ export const Register: React.FC = () => {
                     <div className="field-border-glow" />
                     <div className="field-border-runner" />
 
-                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 transition-colors shadow-sm">
+                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900 transition-colors shadow-sm">
                       <div className="pl-3.5 pr-2 flex items-center pointer-events-none text-slate-400">
                         <ShieldCheck className="w-4 h-4" />
                       </div>
