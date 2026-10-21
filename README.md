@@ -100,7 +100,7 @@ cp server/.env.example server/.env
 
 ### 2. Clone and Setup Environment
 ```bash
-git clone <repo-url>
+git clone https://github.com/PriyaDarshini-E/stackpulse.git
 cd stackpulse
 cp server/.env.example server/.env
 ```
@@ -123,16 +123,17 @@ Install dependencies across both client and server workspaces:
 npm install
 ```
 
-Apply database migrations:
+Generate Prisma client and apply database migrations:
 ```bash
 cd server
+npx prisma generate
 npx prisma migrate deploy
 cd ..
 ```
 
 ### 5. Run Backend & Frontend
 
-Open two terminals. In the first run `npm run dev:server`, in the second run `npm run dev:client`.
+Open two terminals in the project root.
 
 Terminal 1 (Backend):
 ```bash
