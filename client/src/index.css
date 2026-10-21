@@ -149,6 +149,63 @@
   animation: borderBeamSweep 4s ease-in-out infinite;
 }
 
+/* Full Perimeter Animated Glowing Border Card */
+@keyframes borderBeamRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.perimeter-border-card {
+  position: relative;
+  border-radius: 1.5rem;
+  padding: 1.5px;
+  overflow: hidden;
+}
+
+.perimeter-border-runner {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 260deg,
+    rgba(99, 102, 241, 0.25) 290deg,
+    #6366f1 315deg,
+    #818cf8 335deg,
+    #38bdf8 350deg,
+    transparent 360deg
+  );
+  animation: borderBeamRotate 6s linear infinite;
+  pointer-events: none;
+}
+
+.perimeter-border-glow {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 270deg,
+    rgba(99, 102, 241, 0.5) 310deg,
+    #38bdf8 345deg,
+    transparent 360deg
+  );
+  animation: borderBeamRotate 6s linear infinite;
+  filter: blur(4px);
+  pointer-events: none;
+  opacity: 0.85;
+}
+
 /* Shimmer animated gradient text */
 @keyframes shimmer {
   0% { background-position: -200% 0; }
