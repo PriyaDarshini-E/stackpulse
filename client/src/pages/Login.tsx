@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.js';
 import {
@@ -20,12 +20,18 @@ export const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const emailInputRef = useRef<HTMLInputElement>(null);
 
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
   const from = location.state?.from?.pathname || '/';
+
+  // Automatically focus on email input on mount
+  useEffect(() => {
+    emailInputRef.current?.focus();
+  }, []);
 
   const validateForm = (): boolean => {
     if (!email.trim()) {
@@ -66,77 +72,68 @@ export const Login: React.FC = () => {
     <div className="min-h-[calc(100vh-5rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       <div className="w-full max-w-6xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Brand & Feature Highlights (Desktop only) */}
+          {/* Left Column: Headline & Feature Highlights (Desktop only - duplicate logo removed) */}
           <div className="hidden lg:flex lg:col-span-6 xl:col-span-7 flex-col justify-center space-y-8 pr-4">
-            {/* Logo Badge */}
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-indigo-500/25">
-                <Activity className="w-6 h-6 text-white" />
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-black tracking-tight text-white font-sans">
-                    Stack<span className="bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent">Pulse</span>
-                  </span>
-                  <span className="flex h-2 w-2 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                </div>
-                <span className="text-[10px] uppercase font-bold tracking-widest text-indigo-400/90 -mt-0.5">
-                  GitHub Developer Intelligence
-                </span>
-              </div>
-            </div>
-
             {/* Headline */}
             <div>
-              <h1 className="text-4xl xl:text-5xl font-black tracking-tight text-white leading-[1.15]">
+              <h1 className="text-4xl xl:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.15]">
                 Understand the developers{' '}
-                <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-cyan-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-indigo-500 via-purple-400 to-cyan-500 dark:from-indigo-400 dark:via-purple-300 dark:to-cyan-400 bg-clip-text text-transparent">
                   behind the code.
                 </span>
               </h1>
-              <p className="mt-4 text-slate-300 text-base leading-relaxed max-w-lg">
+              <p className="mt-4 text-slate-600 dark:text-slate-300 text-base leading-relaxed max-w-lg">
                 Explore comprehensive GitHub analytics, compare developer performance side by side, and pin key repositories with private notes.
               </p>
             </div>
 
-            {/* 3 Feature Highlights */}
-            <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-sm">
-                <div className="w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 flex items-center justify-center shrink-0">
-                  <Search className="w-5 h-5" />
-                </div>
-                <div>
-                  <h2 className="text-sm font-bold text-white">Search any GitHub developer</h2>
-                  <p className="text-xs text-slate-400 mt-0.5">
-                    Explore language distribution, top stars, repository breakdowns, and commit activity.
-                  </p>
-                </div>
+            {/* 3 Feature Highlights in a Card with Outer Border Animation */}
+            <div className="relative rounded-3xl p-5 sm:p-6 glass-panel border border-slate-200/90 dark:border-slate-800 shadow-2xl overflow-hidden">
+              {/* Outer Border Animation (Top Glowing Beam runner matching Image 2) */}
+              <div className="border-beam-container">
+                <div className="border-beam-line" />
+                <div className="border-beam-runner" />
               </div>
 
-              <div className="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-sm">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 flex items-center justify-center shrink-0">
-                  <GitCompare className="w-5 h-5" />
-                </div>
-                <div>
-                  <h2 className="text-sm font-bold text-white">Compare side by side</h2>
-                  <p className="text-xs text-slate-400 mt-0.5">
-                    Benchmark multiple profiles in real-time with automated metric leadership highlights.
-                  </p>
-                </div>
-              </div>
+              {/* Ambient Glow Orbs */}
+              <div className="absolute -top-20 -right-20 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
+              <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
 
-              <div className="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-900/40 border border-slate-800/80 backdrop-blur-sm">
-                <div className="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-500/30 text-purple-400 flex items-center justify-center shrink-0">
-                  <Bookmark className="w-5 h-5" />
+              <div className="space-y-3 relative z-10">
+                <div className="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-50/70 dark:bg-slate-900/60 hover:bg-slate-100/90 dark:hover:bg-slate-800/70 border border-slate-200/70 dark:border-slate-800/70 transition-all duration-200">
+                  <div className="w-10 h-10 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 shadow-sm">
+                    <Search className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h2 className="text-sm font-bold text-slate-900 dark:text-white">Search any GitHub developer</h2>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                      Explore language distribution, top stars, repository breakdowns, and commit activity.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="text-sm font-bold text-white">Pin and annotate repos</h2>
-                  <p className="text-xs text-slate-400 mt-0.5">
-                    Keep track of standout projects with custom tags and private engineering notes.
-                  </p>
+
+                <div className="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-50/70 dark:bg-slate-900/60 hover:bg-slate-100/90 dark:hover:bg-slate-800/70 border border-slate-200/70 dark:border-slate-800/70 transition-all duration-200">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0 shadow-sm">
+                    <GitCompare className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h2 className="text-sm font-bold text-slate-900 dark:text-white">Compare side by side</h2>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                      Benchmark multiple profiles in real-time with automated metric leadership highlights.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-3.5 rounded-2xl bg-slate-50/70 dark:bg-slate-900/60 hover:bg-slate-100/90 dark:hover:bg-slate-800/70 border border-slate-200/70 dark:border-slate-800/70 transition-all duration-200">
+                  <div className="w-10 h-10 rounded-xl bg-purple-500/15 border border-purple-500/30 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0 shadow-sm">
+                    <Bookmark className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h2 className="text-sm font-bold text-slate-900 dark:text-white">Pin and annotate repos</h2>
+                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
+                      Keep track of standout projects with custom tags and private engineering notes.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -149,25 +146,31 @@ export const Login: React.FC = () => {
               <div className="inline-flex p-3 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 shadow-xl shadow-indigo-500/20 mb-3">
                 <Activity className="w-7 h-7 text-white" />
               </div>
-              <h1 className="text-2xl font-black tracking-tight text-white">Welcome back</h1>
-              <p className="text-xs text-slate-400 mt-1">Sign in to explore GitHub developer insights</p>
+              <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Welcome back</h1>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Sign in to explore GitHub developer insights</p>
             </div>
 
             {/* Glass Card */}
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl relative overflow-hidden">
+            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-2xl relative overflow-hidden">
+              {/* Outer Border Animation (Top Glowing Beam runner matching Image 2) */}
+              <div className="border-beam-container">
+                <div className="border-beam-line" />
+                <div className="border-beam-runner" />
+              </div>
+
               {/* Subtle ambient gradients */}
               <div className="absolute -top-24 -left-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
               <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
               <div className="hidden lg:block mb-6">
-                <h2 className="text-2xl font-bold tracking-tight text-white">Welcome back</h2>
-                <p className="text-xs text-slate-400 mt-1">Sign in to explore GitHub developer insights</p>
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Welcome back</h2>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Sign in to explore GitHub developer insights</p>
               </div>
 
               {/* Error Message */}
               {error && (
-                <div className="mb-5 p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-start gap-3 text-rose-300 text-xs">
-                  <AlertCircle className="w-4 h-4 text-rose-400 shrink-0 mt-0.5" />
+                <div className="mb-5 p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-start gap-3 text-rose-600 dark:text-rose-300 text-xs">
+                  <AlertCircle className="w-4 h-4 text-rose-500 dark:text-rose-400 shrink-0 mt-0.5" />
                   <span className="leading-relaxed">{error}</span>
                 </div>
               )}
@@ -175,7 +178,7 @@ export const Login: React.FC = () => {
               {/* Form */}
               <form onSubmit={handleSubmit} className="space-y-4" noValidate>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Email Address
                   </label>
                   <div className="relative">
@@ -183,6 +186,8 @@ export const Login: React.FC = () => {
                       <Mail className="w-4 h-4" />
                     </div>
                     <input
+                      ref={emailInputRef}
+                      autoFocus
                       type="email"
                       required
                       value={email}
@@ -191,13 +196,13 @@ export const Login: React.FC = () => {
                         if (error) setError(null);
                       }}
                       placeholder="developer@example.com"
-                      className="w-full min-h-[44px] pl-10 pr-4 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 transition-all"
+                      className="w-full min-h-[44px] pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 transition-all shadow-sm"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Password
                   </label>
                   <div className="relative">
@@ -213,12 +218,12 @@ export const Login: React.FC = () => {
                         if (error) setError(null);
                       }}
                       placeholder="••••••••"
-                      className="w-full min-h-[44px] pl-10 pr-12 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-white placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 transition-all"
+                      className="w-full min-h-[44px] pl-10 pr-12 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 transition-all shadow-sm"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute inset-y-0 right-0 px-3.5 flex items-center justify-center min-h-[44px] min-w-[44px] text-slate-400 hover:text-white transition-colors"
+                      className="absolute inset-y-0 right-0 px-3.5 flex items-center justify-center min-h-[44px] min-w-[44px] text-slate-400 hover:text-slate-700 dark:hover:text-white transition-colors"
                       aria-label={showPassword ? 'Hide password' : 'Show password'}
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -243,10 +248,10 @@ export const Login: React.FC = () => {
               </form>
 
               {/* Footer */}
-              <div className="mt-6 pt-6 border-t border-slate-800 text-center">
-                <p className="text-xs text-slate-400">
+              <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800 text-center">
+                <p className="text-xs text-slate-600 dark:text-slate-400">
                   Don't have an account?{' '}
-                  <Link to="/register" className="font-semibold text-indigo-400 hover:text-indigo-300 transition-colors">
+                  <Link to="/register" className="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors">
                     Create an account
                   </Link>
                 </p>
