@@ -206,36 +206,51 @@ export const Dashboard: React.FC = () => {
           )}
         </div>
 
-        {/* Feature Highlights Grid */}
+        {/* Feature Highlights Grid with Hover-Activated Animated Perimeter Border */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          <div className="glass-card stat-card-gradient p-5 sm:p-6 rounded-2xl border border-slate-800/80">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500/20 to-indigo-500/5 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-3">
-              <Code2 className="w-5 h-5" />
+          {/* Card 1: Aggregated Intelligence */}
+          <div className="hover-perimeter-card group">
+            <div className="hover-perimeter-glow" />
+            <div className="hover-perimeter-runner" />
+            <div className="hover-perimeter-inner glass-card stat-card-gradient p-5 sm:p-6 flex flex-col h-full">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500/20 to-indigo-500/5 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-3 group-hover:scale-110 group-hover:border-indigo-400 transition-all duration-300">
+                <Code2 className="w-5 h-5" />
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-white mb-1.5 group-hover:text-indigo-200 transition-colors">Aggregated Intelligence</h3>
+              <p className="text-xs text-slate-400 leading-relaxed font-normal">
+                Total stars and language distributions are calculated automatically across all public repositories with conditional ETag caching.
+              </p>
             </div>
-            <h3 className="text-sm sm:text-base font-bold text-white mb-1.5">Aggregated Intelligence</h3>
-            <p className="text-xs text-slate-400 leading-relaxed font-normal">
-              Total stars and language distributions are calculated automatically across all public repositories with conditional ETag caching.
-            </p>
           </div>
 
-          <div className="glass-card stat-card-gradient p-5 sm:p-6 rounded-2xl border border-slate-800/80">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-3">
-              <GitCompare className="w-5 h-5" />
+          {/* Card 2: Head-to-Head Compare */}
+          <div className="hover-perimeter-card group">
+            <div className="hover-perimeter-glow" />
+            <div className="hover-perimeter-runner" />
+            <div className="hover-perimeter-inner glass-card stat-card-gradient p-5 sm:p-6 flex flex-col h-full">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-3 group-hover:scale-110 group-hover:border-purple-400 transition-all duration-300">
+                <GitCompare className="w-5 h-5" />
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-white mb-1.5 group-hover:text-purple-200 transition-colors">Head-to-Head Compare</h3>
+              <p className="text-xs text-slate-400 leading-relaxed font-normal">
+                Compare 2 to 5 developers simultaneously with side-by-side matrices, multi-bar metric charts, and 1-click comparison saving.
+              </p>
             </div>
-            <h3 className="text-sm sm:text-base font-bold text-white mb-1.5">Head-to-Head Compare</h3>
-            <p className="text-xs text-slate-400 leading-relaxed font-normal">
-              Compare 2 to 5 developers simultaneously with side-by-side matrices, multi-bar metric charts, and 1-click comparison saving.
-            </p>
           </div>
 
-          <div className="glass-card stat-card-gradient p-5 sm:p-6 rounded-2xl border border-slate-800/80 sm:col-span-2 md:col-span-1">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-3">
-              <Bookmark className="w-5 h-5" />
+          {/* Card 3: Curate & Pin Repositories */}
+          <div className="hover-perimeter-card group sm:col-span-2 md:col-span-1">
+            <div className="hover-perimeter-glow" />
+            <div className="hover-perimeter-runner" />
+            <div className="hover-perimeter-inner glass-card stat-card-gradient p-5 sm:p-6 flex flex-col h-full">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-cyan-500/5 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-3 group-hover:scale-110 group-hover:border-cyan-400 transition-all duration-300">
+                <Bookmark className="w-5 h-5" />
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-white mb-1.5 group-hover:text-cyan-200 transition-colors">Curate & Pin Repositories</h3>
+              <p className="text-xs text-slate-400 leading-relaxed font-normal">
+                Bookmark repositories, attach personal engineering notes, and organize with custom tags. Isolated securely to your account.
+              </p>
             </div>
-            <h3 className="text-sm sm:text-base font-bold text-white mb-1.5">Curate & Pin Repositories</h3>
-            <p className="text-xs text-slate-400 leading-relaxed font-normal">
-              Bookmark repositories, attach personal engineering notes, and organize with custom tags. Isolated securely to your account.
-            </p>
           </div>
         </div>
 

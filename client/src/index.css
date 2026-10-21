@@ -206,6 +206,82 @@
   opacity: 0.85;
 }
 
+/* Hover-Activated Perimeter Animated Border for Feature Cards */
+.hover-perimeter-card {
+  position: relative;
+  border-radius: 1rem;
+  padding: 1.5px;
+  overflow: hidden;
+  background: #1e293b; /* base slate-800 border track */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.hover-perimeter-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px -8px rgba(99, 102, 241, 0.25);
+  background: #334155;
+}
+
+.hover-perimeter-runner {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 240deg,
+    rgba(99, 102, 241, 0.45) 280deg,
+    #6366f1 315deg,
+    #818cf8 335deg,
+    #38bdf8 355deg,
+    transparent 360deg
+  );
+  animation: borderBeamRotate 4s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.hover-perimeter-glow {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 260deg,
+    rgba(99, 102, 241, 0.65) 305deg,
+    #38bdf8 345deg,
+    transparent 360deg
+  );
+  animation: borderBeamRotate 4s linear infinite;
+  filter: blur(5px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.hover-perimeter-card:hover .hover-perimeter-runner {
+  opacity: 1;
+}
+
+.hover-perimeter-card:hover .hover-perimeter-glow {
+  opacity: 0.85;
+}
+
+.hover-perimeter-inner {
+  position: relative;
+  z-index: 10;
+  border-radius: calc(1rem - 1.5px);
+  height: 100%;
+}
+
 /* Input Field Perimeter Animated Border on Focus */
 .field-border-wrapper {
   position: relative;
