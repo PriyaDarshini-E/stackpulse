@@ -73,68 +73,68 @@ export const Register: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] lg:h-[calc(100vh-3.5rem)] flex items-center justify-center px-4 sm:px-6 lg:px-8 py-2 sm:py-3 lg:overflow-hidden">
-      <div className="w-full max-w-5xl my-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+    <div className="min-h-[calc(100vh-3.5rem)] flex items-center justify-center px-4 sm:px-6 lg:px-10 xl:px-14 py-4 sm:py-6">
+      <div className="w-full max-w-6xl xl:max-w-7xl my-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
           {/* Left Column: Headline & Feature Highlights (Desktop only) */}
-          <div className="hidden lg:flex lg:col-span-6 xl:col-span-7 flex-col justify-center space-y-3.5 pr-2">
+          <div className="hidden lg:flex lg:col-span-7 xl:col-span-7 flex-col justify-center space-y-5 xl:space-y-6 pr-2">
             {/* Headline */}
             <div>
-              <h1 className="text-2xl xl:text-3xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
+              <h1 className="text-3xl sm:text-4xl xl:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-[1.12]">
                 Understand the developers{' '}
                 <span className="bg-gradient-to-r from-indigo-500 via-purple-400 to-cyan-500 dark:from-indigo-400 dark:via-purple-300 dark:to-cyan-400 bg-clip-text text-transparent">
                   behind the code.
                 </span>
               </h1>
-              <p className="mt-1.5 text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed max-w-lg">
+              <p className="mt-2.5 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed max-w-xl">
                 Join StackPulse to benchmark developers, analyze repositories, and track key engineering contributors.
               </p>
             </div>
 
             {/* 3 Feature Highlights in a Card with Full Perimeter Animated Outer Border */}
-            <div className="perimeter-border-card shadow-xl">
+            <div className="perimeter-border-card shadow-2xl">
               {/* Outer Border Animation running around the COMPLETE perimeter */}
               <div className="perimeter-border-glow" />
               <div className="perimeter-border-runner" />
 
               {/* Inner Card Container */}
-              <div className="relative z-10 w-full h-full rounded-[calc(1.5rem-1.5px)] p-3.5 sm:p-4 glass-panel border border-slate-200/60 dark:border-slate-800/60 overflow-hidden">
+              <div className="relative z-10 w-full h-full rounded-[calc(1.5rem-1.5px)] p-4 sm:p-5 glass-panel border border-slate-200/60 dark:border-slate-800/60 overflow-hidden">
                 {/* Ambient Glow Orbs */}
                 <div className="absolute -top-20 -right-20 w-40 h-40 bg-indigo-500/10 rounded-full blur-2xl pointer-events-none" />
                 <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-cyan-500/10 rounded-full blur-2xl pointer-events-none" />
 
-                <div className="space-y-2 relative z-10">
-                  <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 hover:bg-slate-100/90 dark:hover:bg-slate-800/70 border border-slate-200/70 dark:border-slate-800/70 transition-all duration-200">
-                    <div className="w-8 h-8 rounded-lg bg-indigo-500/15 border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 shadow-sm">
+                <div className="space-y-2.5 relative z-10">
+                  <div className="flex items-center gap-3.5 p-3 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 hover:bg-slate-100/90 dark:hover:bg-slate-800/70 border border-slate-200/70 dark:border-slate-800/70 transition-all duration-200">
+                    <div className="w-9 h-9 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 shadow-sm">
                       <Search className="w-4 h-4" />
                     </div>
                     <div>
-                      <h2 className="text-xs font-bold text-slate-900 dark:text-white">Search any GitHub developer</h2>
-                      <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5 leading-snug">
+                      <h2 className="text-sm font-bold text-slate-900 dark:text-white">Search any GitHub developer</h2>
+                      <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
                         Explore language distribution, top stars, repository breakdowns, and commit activity.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 hover:bg-slate-100/90 dark:hover:bg-slate-800/70 border border-slate-200/70 dark:border-slate-800/70 transition-all duration-200">
-                    <div className="w-8 h-8 rounded-lg bg-cyan-500/15 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0 shadow-sm">
+                  <div className="flex items-center gap-3.5 p-3 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 hover:bg-slate-100/90 dark:hover:bg-slate-800/70 border border-slate-200/70 dark:border-slate-800/70 transition-all duration-200">
+                    <div className="w-9 h-9 rounded-xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-600 dark:text-cyan-400 flex items-center justify-center shrink-0 shadow-sm">
                       <GitCompare className="w-4 h-4" />
                     </div>
                     <div>
-                      <h2 className="text-xs font-bold text-slate-900 dark:text-white">Compare side by side</h2>
-                      <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5 leading-snug">
+                      <h2 className="text-sm font-bold text-slate-900 dark:text-white">Compare side by side</h2>
+                      <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
                         Benchmark multiple profiles in real-time with automated metric leadership highlights.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 hover:bg-slate-100/90 dark:hover:bg-slate-800/70 border border-slate-200/70 dark:border-slate-800/70 transition-all duration-200">
-                    <div className="w-8 h-8 rounded-lg bg-purple-500/15 border border-purple-500/30 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0 shadow-sm">
+                  <div className="flex items-center gap-3.5 p-3 rounded-xl bg-slate-50/70 dark:bg-slate-900/60 hover:bg-slate-100/90 dark:hover:bg-slate-800/70 border border-slate-200/70 dark:border-slate-800/70 transition-all duration-200">
+                    <div className="w-9 h-9 rounded-xl bg-purple-500/15 border border-purple-500/30 text-purple-600 dark:text-purple-400 flex items-center justify-center shrink-0 shadow-sm">
                       <Bookmark className="w-4 h-4" />
                     </div>
                     <div>
-                      <h2 className="text-xs font-bold text-slate-900 dark:text-white">Pin and annotate repos</h2>
-                      <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5 leading-snug">
+                      <h2 className="text-sm font-bold text-slate-900 dark:text-white">Pin and annotate repos</h2>
+                      <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 leading-relaxed">
                         Keep track of standout projects with custom tags and private engineering notes.
                       </p>
                     </div>
@@ -144,50 +144,50 @@ export const Register: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Form Card (Centered on mobile) */}
-          <div className="w-full max-w-sm mx-auto lg:max-w-none lg:col-span-6 xl:col-span-5">
+          {/* Right Column: Form Card (Centered on mobile - wide and spacious) */}
+          <div className="w-full max-w-md mx-auto lg:max-w-none lg:col-span-5 xl:col-span-5">
             {/* Mobile Header */}
-            <div className="lg:hidden text-center mb-3">
-              <div className="inline-flex p-2 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 shadow-md shadow-indigo-500/20 mb-1.5">
-                <Activity className="w-4 h-4 text-white" />
+            <div className="lg:hidden text-center mb-5">
+              <div className="inline-flex p-3 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 shadow-xl shadow-indigo-500/20 mb-2.5">
+                <Activity className="w-6 h-6 text-white" />
               </div>
-              <h1 className="text-lg font-black tracking-tight text-slate-900 dark:text-white">Create an account</h1>
-              <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">Join StackPulse to analyze developer profiles</p>
+              <h1 className="text-2xl font-black tracking-tight text-slate-900 dark:text-white">Create an account</h1>
+              <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Join StackPulse to analyze developer profiles</p>
             </div>
 
             {/* Clean Glass Form Card */}
-            <div className="glass-panel p-4 sm:p-5 rounded-2xl border border-slate-200/90 dark:border-slate-800 shadow-2xl relative overflow-hidden">
+            <div className="glass-panel p-6 sm:p-7 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-2xl relative overflow-hidden">
               {/* Subtle ambient gradients */}
               <div className="absolute -top-24 -left-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
               <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
-              <div className="hidden lg:block mb-2.5">
-                <h2 className="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Create an account</h2>
-                <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">Join StackPulse to analyze developer profiles</p>
+              <div className="hidden lg:block mb-4">
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Create an account</h2>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Join StackPulse to analyze developer profiles</p>
               </div>
 
               {/* Error Message */}
               {error && (
-                <div className="mb-2.5 p-2 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-start gap-2 text-rose-600 dark:text-rose-300 text-xs">
-                  <AlertCircle className="w-3.5 h-3.5 text-rose-500 dark:text-rose-400 shrink-0 mt-0.5" />
-                  <span className="leading-snug">{error}</span>
+                <div className="mb-3.5 p-3 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-start gap-3 text-rose-600 dark:text-rose-300 text-xs">
+                  <AlertCircle className="w-4 h-4 text-rose-500 dark:text-rose-400 shrink-0 mt-0.5" />
+                  <span className="leading-relaxed">{error}</span>
                 </div>
               )}
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-2" noValidate>
+              <form onSubmit={handleSubmit} className="space-y-3" noValidate>
                 {/* Email Field with Focused Perimeter Border Animation */}
                 <div>
-                  <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-0.5">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Email Address
                   </label>
                   <div className="field-border-wrapper">
                     <div className="field-border-glow" />
                     <div className="field-border-runner" />
 
-                    <div className="field-inner relative z-10 flex items-center w-full px-2 py-1 rounded-[calc(0.75rem-1.5px)] bg-slate-900 transition-colors shadow-sm">
-                      <div className="w-7 h-7 rounded-md bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0 mr-2.5 pointer-events-none">
-                        <User className="w-3.5 h-3.5" />
+                    <div className="field-inner relative z-10 flex items-center w-full px-2.5 py-1.5 rounded-[calc(0.75rem-1.5px)] bg-slate-900 transition-colors shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0 mr-3 pointer-events-none">
+                        <User className="w-4 h-4" />
                       </div>
                       <input
                         ref={emailInputRef}
@@ -200,7 +200,7 @@ export const Register: React.FC = () => {
                           if (error) setError(null);
                         }}
                         placeholder="developer@example.com"
-                        className="w-full min-h-[34px] bg-transparent pr-3 py-1 text-slate-100 placeholder-slate-400 text-xs sm:text-sm focus:outline-none"
+                        className="w-full min-h-[36px] bg-transparent pr-4 py-1.5 text-slate-100 placeholder-slate-400 text-sm focus:outline-none"
                       />
                     </div>
                   </div>
@@ -208,16 +208,16 @@ export const Register: React.FC = () => {
 
                 {/* Password Field with Focused Perimeter Border Animation */}
                 <div>
-                  <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-0.5">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Password
                   </label>
                   <div className="field-border-wrapper">
                     <div className="field-border-glow" />
                     <div className="field-border-runner" />
 
-                    <div className="field-inner relative z-10 flex items-center w-full px-2 py-1 rounded-[calc(0.75rem-1.5px)] bg-slate-900 transition-colors shadow-sm">
-                      <div className="w-7 h-7 rounded-md bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0 mr-2.5 pointer-events-none">
-                        <Lock className="w-3.5 h-3.5" />
+                    <div className="field-inner relative z-10 flex items-center w-full px-2.5 py-1.5 rounded-[calc(0.75rem-1.5px)] bg-slate-900 transition-colors shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0 mr-3 pointer-events-none">
+                        <Lock className="w-4 h-4" />
                       </div>
                       <input
                         type={showPassword ? 'text' : 'password'}
@@ -228,15 +228,15 @@ export const Register: React.FC = () => {
                           if (error) setError(null);
                         }}
                         placeholder="At least 6 characters"
-                        className="w-full min-h-[34px] bg-transparent pr-10 py-1 text-slate-100 placeholder-slate-400 text-xs sm:text-sm focus:outline-none"
+                        className="w-full min-h-[36px] bg-transparent pr-12 py-1.5 text-slate-100 placeholder-slate-400 text-sm focus:outline-none"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute inset-y-0 right-0 px-3 flex items-center justify-center min-h-[34px] min-w-[34px] text-slate-400 hover:text-white transition-colors"
+                        className="absolute inset-y-0 right-0 px-3.5 flex items-center justify-center min-h-[36px] min-w-[36px] text-slate-400 hover:text-white transition-colors"
                         aria-label={showPassword ? 'Hide password' : 'Show password'}
                       >
-                        {showPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                       </button>
                     </div>
                   </div>
@@ -244,16 +244,16 @@ export const Register: React.FC = () => {
 
                 {/* Confirm Password Field with Focused Perimeter Border Animation */}
                 <div>
-                  <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-0.5">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
                     Confirm Password
                   </label>
                   <div className="field-border-wrapper">
                     <div className="field-border-glow" />
                     <div className="field-border-runner" />
 
-                    <div className="field-inner relative z-10 flex items-center w-full px-2 py-1 rounded-[calc(0.75rem-1.5px)] bg-slate-900 transition-colors shadow-sm">
-                      <div className="w-7 h-7 rounded-md bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0 mr-2.5 pointer-events-none">
-                        <ShieldCheck className="w-3.5 h-3.5" />
+                    <div className="field-inner relative z-10 flex items-center w-full px-2.5 py-1.5 rounded-[calc(0.75rem-1.5px)] bg-slate-900 transition-colors shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0 mr-3 pointer-events-none">
+                        <ShieldCheck className="w-4 h-4" />
                       </div>
                       <input
                         type={showConfirmPassword ? 'text' : 'password'}
@@ -264,15 +264,15 @@ export const Register: React.FC = () => {
                           if (error) setError(null);
                         }}
                         placeholder="Re-enter password"
-                        className="w-full min-h-[34px] bg-transparent pr-10 py-1 text-slate-100 placeholder-slate-400 text-xs sm:text-sm focus:outline-none"
+                        className="w-full min-h-[36px] bg-transparent pr-12 py-1.5 text-slate-100 placeholder-slate-400 text-sm focus:outline-none"
                       />
                       <button
                         type="button"
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        className="absolute inset-y-0 right-0 px-3 flex items-center justify-center min-h-[34px] min-w-[34px] text-slate-400 hover:text-white transition-colors"
+                        className="absolute inset-y-0 right-0 px-3.5 flex items-center justify-center min-h-[36px] min-w-[36px] text-slate-400 hover:text-white transition-colors"
                         aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
                       >
-                        {showConfirmPassword ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
+                        {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                       </button>
                     </div>
                   </div>
@@ -281,13 +281,13 @@ export const Register: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group relative w-full min-h-[40px] mt-1 rounded-xl text-white text-xs sm:text-sm font-semibold flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500/50 cursor-pointer active:scale-[0.985]"
+                  className="group relative w-full min-h-[44px] mt-2 py-3 px-4 rounded-xl text-white text-sm font-semibold flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500/50 cursor-pointer active:scale-[0.985]"
                 >
                   {/* Ambient backdrop glow */}
                   <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 rounded-xl blur-sm opacity-40 group-hover:opacity-85 group-hover:blur-md transition-all duration-300 pointer-events-none" />
 
                   {/* Button surface */}
-                  <div className="relative w-full h-full min-h-[40px] py-2 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 flex items-center justify-center gap-2 overflow-hidden shadow-lg shadow-indigo-600/30 group-hover:shadow-indigo-600/50 transition-shadow">
+                  <div className="relative w-full h-full min-h-[44px] py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 flex items-center justify-center gap-2 overflow-hidden shadow-lg shadow-indigo-600/30 group-hover:shadow-indigo-600/50 transition-shadow">
                     {/* Specular top highlight */}
                     <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
 
@@ -295,11 +295,11 @@ export const Register: React.FC = () => {
                     <div className="btn-shimmer-sweep pointer-events-none" />
 
                     {loading ? (
-                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin relative z-10" />
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin relative z-10" />
                     ) : (
                       <>
                         <span className="relative z-10 font-semibold tracking-wide">Create Account</span>
-                        <ArrowRight className="w-3.5 h-3.5 relative z-10 transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
+                        <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
                       </>
                     )}
                   </div>
@@ -307,8 +307,8 @@ export const Register: React.FC = () => {
               </form>
 
               {/* Footer */}
-              <div className="mt-3 pt-2.5 border-t border-slate-200 dark:border-slate-800 text-center">
-                <p className="text-[11px] text-slate-600 dark:text-slate-400">
+              <div className="mt-4 pt-3.5 border-t border-slate-200 dark:border-slate-800 text-center">
+                <p className="text-xs text-slate-600 dark:text-slate-400">
                   Already have an account?{' '}
                   <Link to="/login" className="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors">
                     Sign in
