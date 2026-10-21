@@ -27,6 +27,14 @@
     background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;
     background-attachment: fixed;
   }
+
+  /* Universal high-clarity placeholder styling: crisp, light, and readable */
+  input::placeholder,
+  textarea::placeholder {
+    color: #94a3b8;
+    opacity: 0.95;
+    font-weight: 400;
+  }
 }
 
 /* Luxury Glassmorphism Utilities */

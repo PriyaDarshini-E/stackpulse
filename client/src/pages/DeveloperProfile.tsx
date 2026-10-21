@@ -518,7 +518,7 @@ export const DeveloperProfile: React.FC = () => {
                 value={repoSearch}
                 onChange={(e) => setRepoSearch(e.target.value)}
                 placeholder="Filter repositories..."
-                className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                className="w-full pl-8 pr-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-xs text-white font-medium placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:border-indigo-500"
               />
             </div>
 

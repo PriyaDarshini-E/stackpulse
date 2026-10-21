@@ -199,8 +199,8 @@ export const Register: React.FC = () => {
                           setEmail(e.target.value);
                           if (error) setError(null);
                         }}
-                        placeholder="developer@example.com"
-                        className="w-full min-h-[36px] bg-transparent pr-4 py-1.5 text-slate-100 placeholder-slate-400 text-sm focus:outline-none"
+                        placeholder="Enter your email address"
+                        className="w-full min-h-[36px] bg-transparent pr-4 py-1.5 text-white font-medium placeholder:text-slate-400 placeholder:font-normal text-sm focus:outline-none"
                       />
                     </div>
                   </div>
@@ -227,8 +227,8 @@ export const Register: React.FC = () => {
                           setPassword(e.target.value);
                           if (error) setError(null);
                         }}
-                        placeholder="At least 6 characters"
-                        className="w-full min-h-[36px] bg-transparent pr-12 py-1.5 text-slate-100 placeholder-slate-400 text-sm focus:outline-none"
+                        placeholder="Create a password (min. 6 characters)"
+                        className="w-full min-h-[36px] bg-transparent pr-12 py-1.5 text-white font-medium placeholder:text-slate-400 placeholder:font-normal text-sm focus:outline-none"
                       />
                       <button
                         type="button"
@@ -263,8 +263,8 @@ export const Register: React.FC = () => {
                           setConfirmPassword(e.target.value);
                           if (error) setError(null);
                         }}
-                        placeholder="Re-enter password"
-                        className="w-full min-h-[36px] bg-transparent pr-12 py-1.5 text-slate-100 placeholder-slate-400 text-sm focus:outline-none"
+                        placeholder="Confirm your password"
+                        className="w-full min-h-[36px] bg-transparent pr-12 py-1.5 text-white font-medium placeholder:text-slate-400 placeholder:font-normal text-sm focus:outline-none"
                       />
                       <button
                         type="button"

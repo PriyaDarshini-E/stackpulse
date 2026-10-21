@@ -116,7 +116,7 @@ export const Dashboard: React.FC = () => {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   placeholder="Enter GitHub username (e.g. torvalds)..."
-                  className="w-full bg-transparent px-1 py-3 text-white placeholder-slate-400 text-sm sm:text-base focus:outline-none font-medium truncate"
+                  className="w-full bg-transparent px-1 py-3 text-white placeholder:text-slate-400 placeholder:font-normal text-sm sm:text-base focus:outline-none font-semibold truncate"
                   autoComplete="off"
                 />
               </div>

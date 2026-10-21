@@ -129,7 +129,7 @@ export const PinModal: React.FC<PinModalProps> = ({ repo, isOpen, onClose, onSuc
                 onChange={(e) => setNote(e.target.value)}
                 placeholder="Why did you pin this repository?"
                 rows={2}
-                className="w-full px-3 py-2 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-100 placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-indigo-500"
+                className="w-full px-3 py-2 rounded-xl bg-slate-900/90 border border-slate-700 text-white font-medium placeholder:text-slate-400 placeholder:font-normal text-xs sm:text-sm focus:outline-none focus:border-indigo-500"
               />
             </div>
 
@@ -145,7 +145,7 @@ export const PinModal: React.FC<PinModalProps> = ({ repo, isOpen, onClose, onSuc
                   onChange={(e) => setTagInput(e.target.value)}
                   onKeyDown={handleAddTag}
                   placeholder="Add tag and hit Enter"
-                  className="flex-1 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-100 placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-indigo-500"
+                  className="flex-1 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-700 text-white font-medium placeholder:text-slate-400 placeholder:font-normal text-xs sm:text-sm focus:outline-none focus:border-indigo-500"
                 />
                 <button
                   type="button"

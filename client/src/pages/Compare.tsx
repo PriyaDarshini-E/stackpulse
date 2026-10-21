@@ -181,7 +181,7 @@ export const Compare: React.FC = () => {
                 setInputError(null);
               }}
               placeholder="Add another GitHub username (e.g. shadcn)..."
-              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+              className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/90 border border-slate-700/80 text-xs sm:text-sm text-white font-medium placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:border-indigo-500"
             />
           </div>
           <button
@@ -722,7 +722,7 @@ export const Compare: React.FC = () => {
                   value={comparisonName}
                   onChange={(e) => setComparisonName(e.target.value)}
                   placeholder="e.g. Linux Kernel vs React Architecture"
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-white font-medium placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:border-indigo-500"
                 />
               </div>
 

@@ -136,7 +136,7 @@ export const Pins: React.FC = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Filter by repository, developer, or note..."
-              className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+              className="w-full pl-10 pr-4 py-2 rounded-xl bg-slate-900/90 border border-slate-700 text-sm text-white font-medium placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:border-indigo-500"
             />
           </div>
 
@@ -261,7 +261,7 @@ export const Pins: React.FC = () => {
                           value={editNote}
                           onChange={(e) => setEditNote(e.target.value)}
                           rows={2}
-                          className="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                          className="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs text-white font-medium placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:border-indigo-500"
                           placeholder="Add notes..."
                         />
                       </div>
@@ -278,7 +278,7 @@ export const Pins: React.FC = () => {
                             onChange={(e) => setNewTagInput(e.target.value)}
                             onKeyDown={handleAddEditTag}
                             placeholder="Add tag and hit Enter"
-                            className="flex-1 px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500"
+                            className="flex-1 px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 text-xs text-white font-medium placeholder:text-slate-400 placeholder:font-normal focus:outline-none focus:border-indigo-500"
                           />
                           <button
                             type="button"
