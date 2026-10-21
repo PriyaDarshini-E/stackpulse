@@ -71,16 +71,22 @@ stackpulse/
 
 ## ⚙️ Environment Variables
 
-Create `.env` in the root (or copy from `.env.example`):
+The server configuration reads from `server/.env` (and falls back to root `.env`). Because Prisma CLI commands run inside the `server/` directory, **create `.env` inside `server/`** (or copy `server/.env.example` to `server/.env`):
+
+```bash
+cp server/.env.example server/.env
+```
 
 | Variable | Description | Default |
 | :--- | :--- | :--- |
 | `DATABASE_URL` | PostgreSQL connection string | `postgresql://postgres:postgres_password@localhost:5432/stackpulse?schema=public` |
-| `JWT_SECRET` | Secret key for signing JSON Web Tokens | `super-secret-jwt-key-stackpulse-change-in-production-123456` |
+| `JWT_SECRET` | Secret key for signing JSON Web Tokens | `your-long-random-secret` |
 | `GITHUB_TOKEN` | Optional GitHub Personal Access Token (5,000 req/hr) | `""` |
 | `PORT` | Backend server port | `5000` |
 | `CLIENT_URL` | Frontend URL for CORS | `http://localhost:5173` |
 | `CACHE_TTL_MINUTES` | PostgreSQL cache lifetime before revalidation | `60` |
+
+> Generate your own, for example with `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"`.
 
 ---
 
@@ -88,17 +94,20 @@ Create `.env` in the root (or copy from `.env.example`):
 
 ### 1. Prerequisites
 - [Node.js](https://nodejs.org/) v18 or later
-- [Docker](https://www.docker.com/) & Docker Compose
+- [Docker](https://www.docker.com/) & Docker Compose (Optional)
+
+> Docker is optional. Any PostgreSQL connection string in DATABASE_URL works.
 
 ### 2. Clone and Setup Environment
 ```bash
 git clone <repo-url>
-cd StackPluse
-cp .env.example .env
+cd stackpulse
+cp server/.env.example server/.env
 ```
-*(Add your `GITHUB_TOKEN` in `.env` if desired).*
+*(Add your `GITHUB_TOKEN` in `server/.env` if desired).*
 
-### 3. Start PostgreSQL with Docker Compose
+### 3. Start PostgreSQL with Docker Compose (Optional)
+If you don't have a local PostgreSQL instance running, start one with Docker Compose:
 ```bash
 docker compose up -d
 ```
@@ -106,6 +115,7 @@ Verify the container is healthy:
 ```bash
 docker ps
 ```
+*(If you already have PostgreSQL running, simply ensure your `DATABASE_URL` in `server/.env` points to it).*
 
 ### 4. Install Dependencies & Migrate Database
 Install dependencies across both client and server workspaces:
@@ -113,26 +123,27 @@ Install dependencies across both client and server workspaces:
 npm install
 ```
 
-Generate Prisma client and apply migrations:
+Apply database migrations:
 ```bash
 cd server
-npm run prisma:push
-# or: npx prisma migrate deploy
+npx prisma migrate deploy
 cd ..
 ```
 
 ### 5. Run Backend & Frontend
 
-Start both concurrently from the root:
+Open two terminals. In the first run `npm run dev:server`, in the second run `npm run dev:client`.
+
+Terminal 1 (Backend):
 ```bash
 npm run dev:server
 ```
-*(In a second terminal)*:
+
+Terminal 2 (Frontend):
 ```bash
 npm run dev:client
 ```
 
-Or run dev mode for both workspaces:
 - Server runs on: `http://localhost:5000`
 - Client runs on: `http://localhost:5173`
 
