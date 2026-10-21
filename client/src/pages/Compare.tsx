@@ -688,7 +688,8 @@ export const Compare: React.FC = () => {
           <div className="glass-panel-glow w-full max-w-md p-4 sm:p-6 rounded-2xl sm:rounded-3xl border border-slate-700 shadow-2xl relative my-auto flex flex-col max-h-[calc(100dvh-1.5rem)]">
             <button
               onClick={() => setIsSaveModalOpen(false)}
-              className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 p-1.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+              aria-label="Close modal"
+              className="absolute top-3.5 right-3.5 sm:top-4 sm:right-4 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
             >
               <X className="w-4 h-4" />
             </button>

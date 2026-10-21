@@ -127,13 +127,15 @@ export const SavedComparisons: React.FC = () => {
                         />
                         <button
                           onClick={() => handleSaveRename(cmp.id)}
-                          className="p-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white"
+                          aria-label="Save new name"
+                          className="p-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-colors"
                         >
                           <Check className="w-4 h-4" />
                         </button>
                         <button
                           onClick={() => setRenamingId(null)}
-                          className="p-1.5 rounded-lg text-slate-400 hover:text-white"
+                          aria-label="Cancel rename"
+                          className="p-2 rounded-lg text-slate-400 hover:text-white transition-colors"
                         >
                           <X className="w-4 h-4" />
                         </button>
@@ -153,14 +155,16 @@ export const SavedComparisons: React.FC = () => {
                     <div className="flex items-center gap-1 shrink-0">
                       <button
                         onClick={() => startRename(cmp)}
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                        aria-label={`Rename ${cmp.name}`}
+                        className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
                         title="Rename"
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => deleteMutation.mutate(cmp.id)}
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+                        aria-label={`Delete comparison ${cmp.name}`}
+                        className="p-2 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
                         title="Delete comparison"
                       >
                         <Trash2 className="w-4 h-4" />

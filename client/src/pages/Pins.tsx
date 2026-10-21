@@ -214,14 +214,16 @@ export const Pins: React.FC = () => {
                     <div className="flex items-center gap-1">
                       <button
                         onClick={() => (isEditing ? setEditingPinId(null) : startEdit(pin))}
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+                        aria-label={isEditing ? 'Cancel Edit' : `Edit Note & Tags for ${pin.repo.name}`}
+                        className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
                         title={isEditing ? 'Cancel Edit' : 'Edit Note & Tags'}
                       >
                         {isEditing ? <X className="w-4 h-4" /> : <Edit3 className="w-4 h-4" />}
                       </button>
                       <button
                         onClick={() => deleteMutation.mutate(pin.id)}
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
+                        aria-label={`Unpin ${pin.repo.name}`}
+                        className="p-2 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 transition-colors"
                         title="Unpin"
                       >
                         <Trash2 className="w-4 h-4" />
