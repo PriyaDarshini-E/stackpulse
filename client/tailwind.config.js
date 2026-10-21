@@ -26,30 +26,6 @@ export default {
           card: '#111827',
           surface: '#1F2937',
           border: '#374151'
-        },
-        nature: {
-          cream: '#F4EFEA',
-          card: '#FAF7F2',
-          surface: '#FAF8F5',
-          border: '#E5DFD6',
-          forest: {
-            DEFAULT: '#234233',
-            dark: '#1A3326',
-            light: '#2E4D3C',
-            text: '#1E362A',
-            muted: '#5C6B64',
-            lightmuted: '#8A9992',
-          },
-          sage: {
-            light: '#E2EBE0',
-            DEFAULT: '#98B294',
-            dark: '#769671',
-          },
-          terracotta: {
-            light: '#FAEDE7',
-            DEFAULT: '#D27D56',
-            hover: '#BF6E48',
-          }
         }
       },
       fontFamily: {

@@ -37,6 +37,8 @@ export const Navbar: React.FC = () => {
     return location.pathname.startsWith(path);
   };
 
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-[#070A12]/80 border-b border-slate-800/80 transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -108,7 +110,7 @@ export const Navbar: React.FC = () => {
                   <span>Logout</span>
                 </button>
               </div>
-            ) : (
+            ) : !isAuthPage ? (
               <div className="flex items-center gap-2.5">
                 <Link
                   to="/login"
@@ -124,19 +126,21 @@ export const Navbar: React.FC = () => {
                   <span>Get Started</span>
                 </Link>
               </div>
-            )}
+            ) : null}
           </div>
 
           {/* Mobile hamburger menu toggle */}
-          <div className="flex md:hidden items-center">
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-colors"
-              aria-label="Toggle menu"
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
+          {(!isAuthPage || user) && (
+            <div className="flex md:hidden items-center">
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-colors"
+                aria-label="Toggle menu"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -183,7 +187,7 @@ export const Navbar: React.FC = () => {
                 </button>
               </div>
             </>
-          ) : (
+          ) : !isAuthPage ? (
             <div className="space-y-2 pt-2">
               <Link
                 to="/login"
@@ -200,7 +204,7 @@ export const Navbar: React.FC = () => {
                 Create Account
               </Link>
             </div>
-          )}
+          ) : null}
         </div>
       )}
     </header>
