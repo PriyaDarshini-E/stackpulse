@@ -112,7 +112,7 @@ export const SavedComparisons: React.FC = () => {
             return (
               <div
                 key={cmp.id}
-                className="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-indigo-500/40 transition-all space-y-5 group"
+                className="glass-panel p-4 sm:p-6 rounded-2xl border border-slate-800 flex flex-col justify-between hover:border-indigo-500/40 transition-all space-y-4 group"
               >
                 <div>
                   {/* Title Bar */}
@@ -139,18 +139,18 @@ export const SavedComparisons: React.FC = () => {
                         </button>
                       </div>
                     ) : (
-                      <div className="flex-1">
-                        <h3 className="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-indigo-300 transition-colors truncate">
                           {cmp.name}
                         </h3>
                         <p className="text-xs text-slate-500 flex items-center gap-1.5 mt-1">
-                          <Calendar className="w-3 h-3" />
-                          Saved on {new Date(cmp.created_at).toLocaleDateString()}
+                          <Calendar className="w-3 h-3 shrink-0" />
+                          <span>Saved on {new Date(cmp.created_at).toLocaleDateString()}</span>
                         </p>
                       </div>
                     )}
 
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-1 shrink-0">
                       <button
                         onClick={() => startRename(cmp)}
                         className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
@@ -169,26 +169,26 @@ export const SavedComparisons: React.FC = () => {
                   </div>
 
                   {/* Compared Developers Badges */}
-                  <div className="space-y-2 mt-4">
-                    <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                  <div className="space-y-2 mt-3">
+                    <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
                       Compared Developers:
                     </span>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {cmp.comparison_devs.map(({ developer }) => (
                         <div
                           key={developer.id}
-                          className="flex items-center gap-2.5 p-2 rounded-xl bg-slate-900/80 border border-slate-800"
+                          className="flex items-center gap-2 p-2 rounded-xl bg-slate-900/80 border border-slate-800 min-w-0"
                         >
                           <img
                             src={developer.avatar_url || 'https://github.com/identicons/user.png'}
                             alt={developer.github_username}
-                            className="w-8 h-8 rounded-lg object-cover border border-slate-700"
+                            className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg object-cover border border-slate-700 shrink-0"
                           />
-                          <div className="truncate">
+                          <div className="truncate min-w-0">
                             <p className="text-xs font-bold text-white truncate">
                               {developer.name || developer.github_username}
                             </p>
-                            <p className="text-[10px] text-indigo-400 font-mono">
+                            <p className="text-[10px] text-indigo-400 font-mono truncate">
                               @{developer.github_username}
                             </p>
                           </div>
@@ -199,14 +199,14 @@ export const SavedComparisons: React.FC = () => {
                 </div>
 
                 {/* Card Action Button */}
-                <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2">
                   <span className="text-xs text-slate-400">
                     {cmp.comparison_devs.length} Developers
                   </span>
 
                   <button
                     onClick={() => handleReopen(cmp)}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-bold transition-all"
+                    className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/30 text-xs font-bold transition-all"
                   >
                     <GitCompare className="w-3.5 h-3.5" />
                     <span>Reopen in Compare</span>

@@ -187,7 +187,7 @@ export const Pins: React.FC = () => {
             return (
               <div
                 key={pin.id}
-                className="glass-card p-6 rounded-2xl border border-slate-800/90 flex flex-col justify-between hover:border-indigo-500/40 transition-all space-y-4"
+                className="glass-card p-4 sm:p-6 rounded-2xl border border-slate-800/90 flex flex-col justify-between hover:border-indigo-500/40 transition-all space-y-3.5"
               >
                 <div>
                   {/* Top Bar: Dev username and actions */}
@@ -349,8 +349,8 @@ export const Pins: React.FC = () => {
                 </div>
 
                 {/* Footer Meta */}
-                <div className="flex items-center justify-between text-xs text-slate-400 pt-3 border-t border-slate-800/80">
-                  <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center justify-between text-xs text-slate-400 pt-3 border-t border-slate-800/80 gap-2">
+                  <div className="flex items-center gap-2.5 sm:gap-3 flex-wrap">
                     {pin.repo.primary_language && (
                       <span className="flex items-center gap-1 font-medium text-slate-300">
                         <span className="w-2 h-2 rounded-full bg-indigo-400"></span>
