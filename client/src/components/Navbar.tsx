@@ -10,7 +10,6 @@ import {
   LogOut, 
   Menu, 
   X,
-  User as UserIcon,
   Zap
 } from 'lucide-react';
 
@@ -95,11 +94,13 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex items-center gap-3">
             {user ? (
               <div className="flex items-center gap-3">
-                <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 shadow-sm">
-                  <div className="w-5 h-5 rounded-lg bg-indigo-500/20 text-indigo-500 dark:text-indigo-400 flex items-center justify-center font-bold text-[10px]">
-                    <UserIcon className="w-3 h-3" />
+                <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-200 shadow-sm hover:border-indigo-500/40 transition-all duration-200 group">
+                  <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 text-white flex items-center justify-center font-bold text-[11px] shadow-sm shadow-indigo-500/30 group-hover:scale-105 transition-transform">
+                    {user.email ? user.email.charAt(0).toUpperCase() : 'U'}
                   </div>
-                  <span className="max-w-[140px] truncate font-medium text-slate-900 dark:text-slate-200">{user.email}</span>
+                  <span className="font-medium text-slate-200 text-xs max-w-[220px] truncate">
+                    {user.email}
+                  </span>
                 </div>
                 <button
                   onClick={handleLogout}
@@ -149,9 +150,11 @@ export const Navbar: React.FC = () => {
         <div className="md:hidden bg-white/95 dark:bg-[#0A0E1A]/95 backdrop-blur-2xl border-b border-slate-200 dark:border-slate-800 px-4 pt-3 pb-6 space-y-3 shadow-2xl animate-in slide-in-from-top-4 duration-200">
           {user ? (
             <>
-              <div className="px-3.5 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-2.5 text-xs text-slate-700 dark:text-slate-300">
-                <UserIcon className="w-4 h-4 text-indigo-500 dark:text-indigo-400 shrink-0" />
-                <span className="truncate font-medium">{user.email}</span>
+              <div className="px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center gap-2.5 text-xs text-slate-300">
+                <div className="w-6 h-6 rounded-lg bg-gradient-to-tr from-indigo-600 via-indigo-500 to-cyan-400 text-white flex items-center justify-center font-bold text-[11px] shrink-0 shadow-sm shadow-indigo-500/25">
+                  {user.email ? user.email.charAt(0).toUpperCase() : 'U'}
+                </div>
+                <span className="truncate font-medium text-slate-200">{user.email}</span>
               </div>
               <div className="space-y-1">
                 {navLinks.map((link) => {
