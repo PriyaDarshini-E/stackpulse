@@ -144,7 +144,7 @@ export const Register: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Form Card (Centered on mobile) */}
+          {/* Right Column: Form Card (Centered on mobile - clean card without outer perimeter animation) */}
           <div className="w-full max-w-md mx-auto lg:max-w-none lg:col-span-6 xl:col-span-5">
             {/* Mobile Header */}
             <div className="lg:hidden text-center mb-6">
@@ -155,37 +155,38 @@ export const Register: React.FC = () => {
               <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Join StackPulse to analyze and compare developer profiles</p>
             </div>
 
-            {/* Glass Card with Full Perimeter Animated Outer Border */}
-            <div className="perimeter-border-card shadow-2xl">
-              <div className="perimeter-border-glow" />
-              <div className="perimeter-border-runner" />
+            {/* Clean Glass Form Card */}
+            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-slate-200/90 dark:border-slate-800 shadow-2xl relative overflow-hidden">
+              {/* Subtle ambient gradients */}
+              <div className="absolute -top-24 -left-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
-              <div className="relative z-10 w-full h-full rounded-[calc(1.5rem-1.5px)] p-6 sm:p-8 glass-panel border border-slate-200/60 dark:border-slate-800/60 overflow-hidden">
-                {/* Subtle ambient gradients */}
-                <div className="absolute -top-24 -left-24 w-48 h-48 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute -bottom-24 -right-24 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+              <div className="hidden lg:block mb-6">
+                <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Create an account</h2>
+                <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Join StackPulse to analyze and compare developer profiles</p>
+              </div>
 
-                <div className="hidden lg:block mb-6">
-                  <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Create an account</h2>
-                  <p className="text-xs text-slate-600 dark:text-slate-400 mt-1">Join StackPulse to analyze and compare developer profiles</p>
+              {/* Error Message */}
+              {error && (
+                <div className="mb-5 p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-start gap-3 text-rose-600 dark:text-rose-300 text-xs">
+                  <AlertCircle className="w-4 h-4 text-rose-500 dark:text-rose-400 shrink-0 mt-0.5" />
+                  <span className="leading-relaxed">{error}</span>
                 </div>
+              )}
 
-                {/* Error Message */}
-                {error && (
-                  <div className="mb-5 p-3.5 rounded-xl bg-rose-500/15 border border-rose-500/30 flex items-start gap-3 text-rose-600 dark:text-rose-300 text-xs">
-                    <AlertCircle className="w-4 h-4 text-rose-500 dark:text-rose-400 shrink-0 mt-0.5" />
-                    <span className="leading-relaxed">{error}</span>
-                  </div>
-                )}
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+                {/* Email Field with Focused Perimeter Border Animation */}
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                    Email Address
+                  </label>
+                  <div className="field-border-wrapper">
+                    <div className="field-border-glow" />
+                    <div className="field-border-runner" />
 
-                {/* Form */}
-                <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
-                      Email Address
-                    </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 transition-colors shadow-sm">
+                      <div className="pl-3.5 pr-2 flex items-center pointer-events-none text-slate-400">
                         <Mail className="w-4 h-4" />
                       </div>
                       <input
@@ -199,17 +200,23 @@ export const Register: React.FC = () => {
                           if (error) setError(null);
                         }}
                         placeholder="developer@example.com"
-                        className="w-full min-h-[44px] pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 transition-all shadow-sm"
+                        className="w-full min-h-[44px] bg-transparent pr-4 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none"
                       />
                     </div>
                   </div>
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
-                      Password
-                    </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                {/* Password Field with Focused Perimeter Border Animation */}
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                    Password
+                  </label>
+                  <div className="field-border-wrapper">
+                    <div className="field-border-glow" />
+                    <div className="field-border-runner" />
+
+                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 transition-colors shadow-sm">
+                      <div className="pl-3.5 pr-2 flex items-center pointer-events-none text-slate-400">
                         <Lock className="w-4 h-4" />
                       </div>
                       <input
@@ -221,7 +228,7 @@ export const Register: React.FC = () => {
                           if (error) setError(null);
                         }}
                         placeholder="At least 6 characters"
-                        className="w-full min-h-[44px] pl-10 pr-12 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 transition-all shadow-sm"
+                        className="w-full min-h-[44px] bg-transparent pr-12 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none"
                       />
                       <button
                         type="button"
@@ -233,13 +240,19 @@ export const Register: React.FC = () => {
                       </button>
                     </div>
                   </div>
+                </div>
 
-                  <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
-                      Confirm Password
-                    </label>
-                    <div className="relative">
-                      <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+                {/* Confirm Password Field with Focused Perimeter Border Animation */}
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-1.5">
+                    Confirm Password
+                  </label>
+                  <div className="field-border-wrapper">
+                    <div className="field-border-glow" />
+                    <div className="field-border-runner" />
+
+                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 transition-colors shadow-sm">
+                      <div className="pl-3.5 pr-2 flex items-center pointer-events-none text-slate-400">
                         <ShieldCheck className="w-4 h-4" />
                       </div>
                       <input
@@ -251,7 +264,7 @@ export const Register: React.FC = () => {
                           if (error) setError(null);
                         }}
                         placeholder="Re-enter password"
-                        className="w-full min-h-[44px] pl-10 pr-12 py-2.5 rounded-xl bg-white dark:bg-slate-900/90 border border-slate-300 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/30 transition-all shadow-sm"
+                        className="w-full min-h-[44px] bg-transparent pr-12 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none"
                       />
                       <button
                         type="button"
@@ -263,32 +276,44 @@ export const Register: React.FC = () => {
                       </button>
                     </div>
                   </div>
+                </div>
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full min-h-[44px] mt-2 py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:opacity-95 text-white text-sm font-semibold shadow-lg shadow-indigo-600/30 flex items-center justify-center gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
-                  >
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="group relative w-full min-h-[44px] mt-2 rounded-xl text-white text-sm font-semibold flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500/50 cursor-pointer active:scale-[0.985]"
+                >
+                  {/* Ambient backdrop glow */}
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 rounded-xl blur-sm opacity-40 group-hover:opacity-85 group-hover:blur-md transition-all duration-300 pointer-events-none" />
+
+                  {/* Button surface */}
+                  <div className="relative w-full h-full min-h-[44px] py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 flex items-center justify-center gap-2 overflow-hidden shadow-lg shadow-indigo-600/30 group-hover:shadow-indigo-600/50 transition-shadow">
+                    {/* Specular top highlight */}
+                    <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
+
+                    {/* Animated luminous shimmer beam */}
+                    <div className="btn-shimmer-sweep pointer-events-none" />
+
                     {loading ? (
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin relative z-10" />
                     ) : (
                       <>
-                        <span>Create Account</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <span className="relative z-10 font-semibold tracking-wide">Create Account</span>
+                        <ArrowRight className="w-4 h-4 relative z-10 transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
                       </>
                     )}
-                  </button>
-                </form>
+                  </div>
+                </button>
+              </form>
 
-                {/* Footer */}
-                <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800 text-center">
-                  <p className="text-xs text-slate-600 dark:text-slate-400">
-                    Already have an account?{' '}
-                    <Link to="/login" className="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors">
-                      Sign in
-                    </Link>
-                  </p>
-                </div>
+              {/* Footer */}
+              <div className="mt-6 pt-6 border-t border-slate-200 dark:border-slate-800 text-center">
+                <p className="text-xs text-slate-600 dark:text-slate-400">
+                  Already have an account?{' '}
+                  <Link to="/login" className="font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 transition-colors">
+                    Sign in
+                  </Link>
+                </p>
               </div>
             </div>
           </div>

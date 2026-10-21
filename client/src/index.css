@@ -206,6 +206,70 @@
   opacity: 0.85;
 }
 
+/* Input Field Perimeter Animated Border on Focus */
+.field-border-wrapper {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 1.5px;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.field-border-runner {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 260deg,
+    rgba(99, 102, 241, 0.4) 290deg,
+    #6366f1 315deg,
+    #818cf8 335deg,
+    #38bdf8 350deg,
+    transparent 360deg
+  );
+  animation: borderBeamRotate 4s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.field-border-glow {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 270deg,
+    rgba(99, 102, 241, 0.6) 310deg,
+    #38bdf8 345deg,
+    transparent 360deg
+  );
+  animation: borderBeamRotate 4s linear infinite;
+  filter: blur(3px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.field-border-wrapper:focus-within .field-border-runner {
+  opacity: 1;
+}
+
+.field-border-wrapper:focus-within .field-border-glow {
+  opacity: 0.85;
+}
+
+.field-border-wrapper:focus-within .field-inner {
+  border-color: transparent !important;
+}
+
 /* Shimmer animated gradient text */
 @keyframes shimmer {
   0% { background-position: -200% 0; }
@@ -229,6 +293,34 @@
 
 .animate-pulse-glow {
   animation: pulseGlow 4s ease-in-out infinite;
+}
+
+/* Animated Button Shimmer Beam & Micro-Interactions */
+@keyframes btnShimmerSweep {
+  0% {
+    transform: translateX(-160%) skewX(-20deg);
+  }
+  35%, 100% {
+    transform: translateX(280%) skewX(-20deg);
+  }
+}
+
+.btn-shimmer-sweep {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.06) 20%,
+    rgba(255, 255, 255, 0.38) 50%,
+    rgba(255, 255, 255, 0.06) 80%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: btnShimmerSweep 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
 }
 
 /* Custom sleek scrollbar */
