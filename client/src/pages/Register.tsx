@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext.js';
 import {
   Activity,
   Lock,
-  Mail,
+  User,
   ArrowRight,
   AlertCircle,
   ShieldCheck,
@@ -185,9 +185,9 @@ export const Register: React.FC = () => {
                     <div className="field-border-glow" />
                     <div className="field-border-runner" />
 
-                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900 transition-colors shadow-sm">
-                      <div className="pl-3.5 pr-2 flex items-center pointer-events-none text-slate-400">
-                        <Mail className="w-4 h-4" />
+                    <div className="field-inner relative z-10 flex items-center w-full px-2 py-1.5 rounded-[calc(0.75rem-1.5px)] bg-slate-900 transition-colors shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0 mr-3 pointer-events-none">
+                        <User className="w-4 h-4" />
                       </div>
                       <input
                         ref={emailInputRef}
@@ -200,7 +200,7 @@ export const Register: React.FC = () => {
                           if (error) setError(null);
                         }}
                         placeholder="developer@example.com"
-                        className="w-full min-h-[44px] bg-transparent pr-4 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none"
+                        className="w-full min-h-[38px] bg-transparent pr-4 py-2 text-slate-100 placeholder-slate-400 text-sm focus:outline-none"
                       />
                     </div>
                   </div>
@@ -215,8 +215,8 @@ export const Register: React.FC = () => {
                     <div className="field-border-glow" />
                     <div className="field-border-runner" />
 
-                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900 transition-colors shadow-sm">
-                      <div className="pl-3.5 pr-2 flex items-center pointer-events-none text-slate-400">
+                    <div className="field-inner relative z-10 flex items-center w-full px-2 py-1.5 rounded-[calc(0.75rem-1.5px)] bg-slate-900 transition-colors shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0 mr-3 pointer-events-none">
                         <Lock className="w-4 h-4" />
                       </div>
                       <input
@@ -228,12 +228,12 @@ export const Register: React.FC = () => {
                           if (error) setError(null);
                         }}
                         placeholder="At least 6 characters"
-                        className="w-full min-h-[44px] bg-transparent pr-12 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none"
+                        className="w-full min-h-[38px] bg-transparent pr-12 py-2 text-slate-100 placeholder-slate-400 text-sm focus:outline-none"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute inset-y-0 right-0 px-3.5 flex items-center justify-center min-h-[44px] min-w-[44px] text-slate-400 hover:text-slate-700 dark:hover:text-white transition-colors"
+                        className="absolute inset-y-0 right-0 px-3.5 flex items-center justify-center min-h-[38px] min-w-[38px] text-slate-400 hover:text-white transition-colors"
                         aria-label={showPassword ? 'Hide password' : 'Show password'}
                       >
                         {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
@@ -251,8 +251,8 @@ export const Register: React.FC = () => {
                     <div className="field-border-glow" />
                     <div className="field-border-runner" />
 
-                    <div className="field-inner relative z-10 flex items-center w-full rounded-[calc(0.75rem-1.5px)] bg-white dark:bg-slate-900 transition-colors shadow-sm">
-                      <div className="pl-3.5 pr-2 flex items-center pointer-events-none text-slate-400">
+                    <div className="field-inner relative z-10 flex items-center w-full px-2 py-1.5 rounded-[calc(0.75rem-1.5px)] bg-slate-900 transition-colors shadow-sm">
+                      <div className="w-8 h-8 rounded-lg bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0 mr-3 pointer-events-none">
                         <ShieldCheck className="w-4 h-4" />
                       </div>
                       <input
@@ -264,12 +264,12 @@ export const Register: React.FC = () => {
                           if (error) setError(null);
                         }}
                         placeholder="Re-enter password"
-                        className="w-full min-h-[44px] bg-transparent pr-12 py-2.5 text-slate-900 dark:text-white placeholder-slate-400 text-sm focus:outline-none"
+                        className="w-full min-h-[38px] bg-transparent pr-12 py-2 text-slate-100 placeholder-slate-400 text-sm focus:outline-none"
                       />
                       <button
                         type="button"
                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                        className="absolute inset-y-0 right-0 px-3.5 flex items-center justify-center min-h-[44px] min-w-[44px] text-slate-400 hover:text-slate-700 dark:hover:text-white transition-colors"
+                        className="absolute inset-y-0 right-0 px-3.5 flex items-center justify-center min-h-[38px] min-w-[38px] text-slate-400 hover:text-white transition-colors"
                         aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
                       >
                         {showConfirmPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}

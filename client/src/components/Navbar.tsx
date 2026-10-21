@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.js';
-import { ThemeToggle } from './ThemeToggle.js';
 import { 
   Activity, 
   Search, 
@@ -92,9 +91,8 @@ export const Navbar: React.FC = () => {
             </nav>
           )}
 
-          {/* User actions / Auth Buttons / Theme Toggle */}
+          {/* User actions / Auth Buttons */}
           <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle />
             {user ? (
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 text-xs text-slate-700 dark:text-slate-300 shadow-sm">
@@ -131,9 +129,8 @@ export const Navbar: React.FC = () => {
             ) : null}
           </div>
 
-          {/* Mobile Right: Theme Toggle + Menu */}
+          {/* Mobile Right: Menu */}
           <div className="flex md:hidden items-center gap-2">
-            <ThemeToggle />
             {(!isAuthPage || user) && (
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

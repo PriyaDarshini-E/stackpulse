@@ -11,42 +11,21 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setThemeState] = useState<Theme>(() => {
-    try {
-      const saved = localStorage.getItem('stackpulse_theme') as Theme | null;
-      if (saved === 'dark' || saved === 'light') return saved;
-      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        return 'light';
-      }
-    } catch {
-      // ignore storage access errors
-    }
-    return 'dark';
-  });
+  const [theme] = useState<Theme>('dark');
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
-    } else {
-      root.classList.remove('dark');
-      root.classList.add('light');
-    }
+    root.classList.add('dark');
+    root.classList.remove('light');
     try {
-      localStorage.setItem('stackpulse_theme', theme);
+      localStorage.setItem('stackpulse_theme', 'dark');
     } catch {
       // ignore
     }
-  }, [theme]);
+  }, []);
 
-  const toggleTheme = () => {
-    setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark'));
-  };
-
-  const setTheme = (t: Theme) => {
-    setThemeState(t);
-  };
+  const toggleTheme = () => {};
+  const setTheme = () => {};
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
