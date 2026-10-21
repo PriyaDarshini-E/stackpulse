@@ -412,32 +412,63 @@ input:-webkit-autofill:active {
   animation: pulseGlow 4s ease-in-out infinite;
 }
 
-/* Animated Button Shimmer Beam & Micro-Interactions */
-@keyframes btnShimmerSweep {
-  0% {
-    transform: translateX(-160%) skewX(-20deg);
-  }
-  35%, 100% {
-    transform: translateX(280%) skewX(-20deg);
-  }
+/* Button Perimeter Animated Outer Border - Same signature animation as feature card */
+.btn-perimeter-wrapper {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 1.5px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
 }
 
-.btn-shimmer-sweep {
+.btn-perimeter-wrapper:hover {
+  transform: translateY(-1px);
+}
+
+.btn-perimeter-wrapper:active {
+  transform: scale(0.985);
+}
+
+.btn-perimeter-runner {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.06) 20%,
-    rgba(255, 255, 255, 0.38) 50%,
-    rgba(255, 255, 255, 0.06) 80%,
-    rgba(255, 255, 255, 0) 100%
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 240deg,
+    rgba(99, 102, 241, 0.6) 280deg,
+    #6366f1 315deg,
+    #818cf8 335deg,
+    #38bdf8 355deg,
+    transparent 360deg
   );
-  animation: btnShimmerSweep 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation: borderBeamRotate 3.5s linear infinite;
   pointer-events: none;
+  z-index: 1;
+}
+
+.btn-perimeter-glow {
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 260deg,
+    rgba(99, 102, 241, 0.7) 305deg,
+    #38bdf8 345deg,
+    transparent 360deg
+  );
+  animation: borderBeamRotate 3.5s linear infinite;
+  filter: blur(4px);
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Custom sleek scrollbar */

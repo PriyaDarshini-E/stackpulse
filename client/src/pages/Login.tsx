@@ -241,19 +241,14 @@ export const Login: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group relative w-full min-h-[44px] mt-2 py-3 px-4 rounded-xl text-white text-sm font-semibold flex items-center justify-center transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500/50 cursor-pointer active:scale-[0.985]"
+                  className="btn-perimeter-wrapper w-full mt-2 text-white text-sm font-semibold flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-indigo-500/50 shadow-lg shadow-indigo-600/30 hover:shadow-indigo-600/50"
                 >
-                  {/* Ambient backdrop glow */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 rounded-xl blur-sm opacity-40 group-hover:opacity-85 group-hover:blur-md transition-all duration-300 pointer-events-none" />
+                  {/* Perimeter Animated Outer Border - Same signature animation as feature card */}
+                  <div className="btn-perimeter-glow" />
+                  <div className="btn-perimeter-runner" />
 
                   {/* Button surface */}
-                  <div className="relative w-full h-full min-h-[44px] py-3 px-4 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 flex items-center justify-center gap-2 overflow-hidden shadow-lg shadow-indigo-600/30 group-hover:shadow-indigo-600/50 transition-shadow">
-                    {/* Specular top highlight */}
-                    <div className="absolute top-0 inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
-
-                    {/* Animated luminous shimmer beam */}
-                    <div className="btn-shimmer-sweep pointer-events-none" />
-
+                  <div className="relative z-10 w-full h-full min-h-[44px] py-3 px-4 rounded-[calc(0.75rem-1.5px)] bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 flex items-center justify-center gap-2">
                     {loading ? (
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin relative z-10" />
                     ) : (
