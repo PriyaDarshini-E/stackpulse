@@ -19,6 +19,7 @@ import {
 import { 
   BarChart, 
   Bar, 
+  Cell,
   XAxis, 
   YAxis, 
   CartesianGrid, 
@@ -27,6 +28,7 @@ import {
   ResponsiveContainer 
 } from 'recharts';
 import { apiRequest } from '../services/api.js';
+import { CompareSkeleton } from '../components/LoadingSkeleton.js';
 
 const DEVELOPER_COLORS = ['#6366F1', '#10B981', '#F59E0B', '#EC4899', '#06B6D4'];
 
@@ -137,6 +139,7 @@ export const Compare: React.FC = () => {
   const maxStars = Math.max(...developers.map((d: any) => d.total_stars || 0), 0);
   const maxFollowers = Math.max(...developers.map((d: any) => d.followers || 0), 0);
   const maxRepos = Math.max(...developers.map((d: any) => d.public_repos || 0), 0);
+  const maxCommits = Math.max(...developers.map((d: any) => d.commit_activity?.totalSampledCommits || 0), 0);
 
   return (
     <div className="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 py-6 sm:py-10 space-y-6 sm:space-y-8 overflow-hidden">
@@ -198,30 +201,44 @@ export const Compare: React.FC = () => {
         )}
 
         {/* Selected Developer Badges */}
-        <div className="flex flex-wrap items-center gap-1.5 pt-1">
+        <div className="flex flex-wrap items-center gap-2 pt-1">
           <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mr-1">
             Comparing ({usernames.length}/5):
           </span>
-          {usernames.map((u, idx) => (
-            <div
-              key={u}
-              className="flex items-center gap-1.5 pl-3 pr-1.5 py-1 rounded-xl bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200"
-            >
-              <span
-                className="w-2 h-2 rounded-full shrink-0"
-                style={{ backgroundColor: DEVELOPER_COLORS[idx % DEVELOPER_COLORS.length] }}
-              ></span>
-              <span className="font-mono text-indigo-300">@{u}</span>
-              <button
-                type="button"
-                onClick={() => handleRemoveDeveloper(u)}
-                className="p-1 rounded-lg text-slate-400 hover:text-rose-400 transition-colors"
-                title="Remove"
+          {usernames.map((u, idx) => {
+            const devObj = developers.find((d: any) => d.github_username?.toLowerCase() === u.toLowerCase());
+            const avatarUrl = devObj?.avatar_url || `https://github.com/${u}.png`;
+
+            return (
+              <div
+                key={u}
+                className="flex items-center gap-2 pl-2 pr-1.5 py-1 rounded-xl bg-slate-900 border border-slate-700/80 text-xs font-semibold text-slate-200 shadow-sm transition-all hover:border-slate-600"
               >
-                <X className="w-3 h-3" />
-              </button>
-            </div>
-          ))}
+                <img
+                  src={avatarUrl}
+                  alt={u}
+                  className="w-5 h-5 rounded-full object-cover border border-slate-700 shrink-0"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
+                <span
+                  className="w-2 h-2 rounded-full shrink-0"
+                  style={{ backgroundColor: DEVELOPER_COLORS[idx % DEVELOPER_COLORS.length] }}
+                />
+                <span className="font-mono text-indigo-300 font-bold">@{u}</span>
+                <button
+                  type="button"
+                  onClick={() => handleRemoveDeveloper(u)}
+                  className="p-1 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-colors"
+                  title={`Remove @${u}`}
+                  aria-label={`Remove @${u}`}
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            );
+          })}
         </div>
 
         {/* Presets */}
@@ -230,43 +247,58 @@ export const Compare: React.FC = () => {
           <button
             type="button"
             onClick={() => setUsernames(['torvalds', 'gaearon'])}
-            className="px-2.5 py-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-indigo-300 border border-slate-800 text-[11px] font-semibold"
+            className="px-2.5 py-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-indigo-300 border border-slate-800 text-[11px] font-semibold transition-colors"
           >
             Linus vs Dan
           </button>
           <button
             type="button"
             onClick={() => setUsernames(['shadcn', 'sindresorhus', 'tj'])}
-            className="px-2.5 py-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-indigo-300 border border-slate-800 text-[11px] font-semibold"
+            className="px-2.5 py-1 rounded-xl bg-slate-900 hover:bg-slate-800 text-indigo-300 border border-slate-800 text-[11px] font-semibold transition-colors"
           >
             UI & Open Source Leads
           </button>
         </div>
       </div>
 
-      {/* Loading & Error States */}
-      {isLoading && (
-        <div className="glass-panel p-12 rounded-3xl border border-slate-800 text-center space-y-3">
-          <div className="w-10 h-10 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-xs sm:text-sm text-slate-300 font-semibold">
-            Fetching and benchmarking developers in parallel...
-          </p>
-        </div>
-      )}
+      {/* Loading Skeleton */}
+      {isLoading && <CompareSkeleton />}
 
+      {/* Error State */}
       {fetchError && (
-        <div className="glass-panel p-6 rounded-3xl border border-rose-500/30 bg-rose-500/10 text-center space-y-2">
-          <AlertCircle className="w-7 h-7 text-rose-400 mx-auto" />
-          <h3 className="text-sm font-bold text-white">Comparison Failed</h3>
-          <p className="text-xs text-rose-300">
+        <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-rose-500/30 bg-rose-500/10 text-center space-y-3 max-w-lg mx-auto">
+          <AlertCircle className="w-8 h-8 text-rose-400 mx-auto" />
+          <h3 className="text-base font-bold text-white">Comparison Failed</h3>
+          <p className="text-xs text-rose-300 max-w-sm mx-auto">
             {(fetchError as any)?.message || 'Failed to compare developers.'}
           </p>
           <button
             onClick={() => refetch()}
-            className="px-4 py-1.5 rounded-xl bg-slate-800 text-xs font-bold text-white hover:bg-slate-700"
+            className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white transition-colors border border-slate-700"
           >
             Retry
           </button>
+        </div>
+      )}
+
+      {/* Friendly Empty State */}
+      {!isLoading && !fetchError && developers.length < 2 && (
+        <div className="glass-panel p-8 sm:p-12 rounded-3xl border border-slate-800 text-center max-w-md mx-auto space-y-3">
+          <div className="w-12 h-12 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center mx-auto">
+            <GitCompare className="w-6 h-6" />
+          </div>
+          <h3 className="text-base sm:text-lg font-bold text-white">Compare at least 2 developers</h3>
+          <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+            Add two or more GitHub usernames to benchmark stars, followers, and language ecosystems.
+          </p>
+          <div className="pt-2 flex justify-center">
+            <button
+              onClick={() => setUsernames(['torvalds', 'gaearon'])}
+              className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-md shadow-indigo-600/30"
+            >
+              Compare Linus vs Dan
+            </button>
+          </div>
         </div>
       )}
 
@@ -433,14 +465,14 @@ export const Compare: React.FC = () => {
                     {developers.map((dev: any) => {
                       const isLeader = dev.total_stars === maxStars && maxStars > 0;
                       return (
-                        <td key={dev.id} className="py-3.5 px-5">
-                          <div className="flex items-center gap-1.5 font-mono font-bold text-white">
+                        <td key={dev.id} className={`py-3.5 px-5 transition-colors ${isLeader ? 'bg-amber-500/10' : ''}`}>
+                          <div className="flex items-center gap-2 font-mono font-bold text-white">
                             <span className={isLeader ? 'text-amber-400' : ''}>
                               {dev.total_stars.toLocaleString()}
                             </span>
                             {isLeader && (
-                              <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] font-black bg-amber-400/20 text-amber-300">
-                                <Crown className="w-2.5 h-2.5 fill-amber-300" /> Top
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30">
+                                <Crown className="w-2.5 h-2.5 fill-amber-300" /> Leader
                               </span>
                             )}
                           </div>
@@ -458,14 +490,14 @@ export const Compare: React.FC = () => {
                     {developers.map((dev: any) => {
                       const isLeader = dev.followers === maxFollowers && maxFollowers > 0;
                       return (
-                        <td key={dev.id} className="py-3.5 px-5">
-                          <div className="flex items-center gap-1.5 font-mono font-bold text-white">
+                        <td key={dev.id} className={`py-3.5 px-5 transition-colors ${isLeader ? 'bg-indigo-500/10' : ''}`}>
+                          <div className="flex items-center gap-2 font-mono font-bold text-white">
                             <span className={isLeader ? 'text-indigo-400' : ''}>
                               {dev.followers.toLocaleString()}
                             </span>
                             {isLeader && (
-                              <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] font-black bg-indigo-400/20 text-indigo-300">
-                                Top
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-indigo-400/20 text-indigo-300 border border-indigo-400/30">
+                                <Crown className="w-2.5 h-2.5 fill-indigo-300" /> Leader
                               </span>
                             )}
                           </div>
@@ -483,14 +515,40 @@ export const Compare: React.FC = () => {
                     {developers.map((dev: any) => {
                       const isLeader = dev.public_repos === maxRepos && maxRepos > 0;
                       return (
-                        <td key={dev.id} className="py-3.5 px-5">
-                          <div className="flex items-center gap-1.5 font-mono font-bold text-white">
+                        <td key={dev.id} className={`py-3.5 px-5 transition-colors ${isLeader ? 'bg-cyan-500/10' : ''}`}>
+                          <div className="flex items-center gap-2 font-mono font-bold text-white">
                             <span className={isLeader ? 'text-cyan-400' : ''}>
                               {dev.public_repos.toLocaleString()}
                             </span>
                             {isLeader && (
-                              <span className="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-[9px] font-black bg-cyan-400/20 text-cyan-300">
-                                Most
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-400/20 text-cyan-300 border border-cyan-400/30">
+                                <Crown className="w-2.5 h-2.5 fill-cyan-300" /> Leader
+                              </span>
+                            )}
+                          </div>
+                        </td>
+                      );
+                    })}
+                  </tr>
+
+                  {/* Sampled Commits Row */}
+                  <tr className="hover:bg-slate-800/30 transition-colors">
+                    <td className="py-3.5 px-5 font-bold text-slate-300 flex items-center gap-2">
+                      <Code className="w-3.5 h-3.5 text-purple-400" />
+                      Sampled Commits
+                    </td>
+                    {developers.map((dev: any) => {
+                      const commits = dev.commit_activity?.totalSampledCommits || 0;
+                      const isLeader = commits === maxCommits && maxCommits > 0;
+                      return (
+                        <td key={dev.id} className={`py-3.5 px-5 transition-colors ${isLeader ? 'bg-purple-500/10' : ''}`}>
+                          <div className="flex items-center gap-2 font-mono font-bold text-white">
+                            <span className={isLeader ? 'text-purple-400' : ''}>
+                              {commits.toLocaleString()}
+                            </span>
+                            {isLeader && (
+                              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-400/20 text-purple-300 border border-purple-400/30">
+                                <Crown className="w-2.5 h-2.5 fill-purple-300" /> Leader
                               </span>
                             )}
                           </div>
@@ -502,7 +560,7 @@ export const Compare: React.FC = () => {
                   {/* Top Languages Row */}
                   <tr className="hover:bg-slate-800/30 transition-colors">
                     <td className="py-3.5 px-5 font-bold text-slate-300 flex items-center gap-2">
-                      <Code className="w-3.5 h-3.5 text-purple-400" />
+                      <Code className="w-3.5 h-3.5 text-indigo-400" />
                       Top Languages
                     </td>
                     {developers.map((dev: any) => (
@@ -512,7 +570,7 @@ export const Compare: React.FC = () => {
                             dev.topLanguages.map((lang: string) => (
                               <span
                                 key={lang}
-                                className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-slate-900 text-slate-200"
+                                className="px-2 py-0.5 rounded-md text-[10px] font-semibold bg-slate-900 border border-slate-800 text-slate-200"
                               >
                                 {lang}
                               </span>
@@ -532,7 +590,7 @@ export const Compare: React.FC = () => {
                       <td key={dev.id} className="py-3.5 px-5">
                         <button
                           onClick={() => navigate(`/developer/${dev.github_username}`)}
-                          className="px-3 py-1 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200"
+                          className="px-3 py-1 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 transition-colors"
                         >
                           Profile
                         </button>
@@ -560,16 +618,23 @@ export const Compare: React.FC = () => {
                     <YAxis stroke="#64748B" fontSize={11} />
                     <RechartsTooltip
                       contentStyle={{
-                        backgroundColor: '#0D1322',
-                        border: '1px solid #374151',
-                        borderRadius: '0.75rem',
-                        color: '#fff',
+                        backgroundColor: '#0F172A',
+                        border: '1px solid #334155',
+                        borderRadius: '0.875rem',
+                        color: '#F8FAFC',
                         fontSize: '0.75rem',
+                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
+                        padding: '8px 12px',
                       }}
+                      itemStyle={{ color: '#F8FAFC' }}
                     />
                     <Legend wrapperStyle={{ fontSize: '0.75rem', paddingTop: '8px' }} />
-                    <Bar dataKey="stars" name="Total Stars" fill="#F59E0B" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="followers" name="Followers" fill="#6366F1" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="stars" name="Total Stars" fill="#F59E0B" radius={[4, 4, 0, 0]}>
+                      {(compareData?.chartMetrics?.overview || []).map((_: any, index: number) => (
+                        <Cell key={`cell-stars-${index}`} fill={DEVELOPER_COLORS[index % DEVELOPER_COLORS.length]} />
+                      ))}
+                    </Bar>
+                    <Bar dataKey="followers" name="Followers" fill="#6366F1" fillOpacity={0.65} radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -589,12 +654,15 @@ export const Compare: React.FC = () => {
                     <YAxis stroke="#64748B" fontSize={11} />
                     <RechartsTooltip
                       contentStyle={{
-                        backgroundColor: '#0D1322',
-                        border: '1px solid #374151',
-                        borderRadius: '0.75rem',
-                        color: '#fff',
+                        backgroundColor: '#0F172A',
+                        border: '1px solid #334155',
+                        borderRadius: '0.875rem',
+                        color: '#F8FAFC',
                         fontSize: '0.75rem',
+                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
+                        padding: '8px 12px',
                       }}
+                      itemStyle={{ color: '#F8FAFC' }}
                     />
                     <Legend wrapperStyle={{ fontSize: '0.75rem', paddingTop: '8px' }} />
                     {developers.map((dev: any, idx: number) => (

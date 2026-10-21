@@ -182,28 +182,39 @@ export const DeveloperProfile: React.FC = () => {
         {/* Status badges & Action buttons */}
         <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto">
           {stale && (
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-[11px] font-semibold">
-              <AlertTriangle className="w-3 h-3 text-amber-400 shrink-0" />
-              <span>Stale Cache</span>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-semibold shadow-sm">
+              <AlertTriangle className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+              <span>Data may be outdated (stale)</span>
+              <button
+                onClick={handleManualRefresh}
+                disabled={isRefreshing}
+                className="ml-1 px-2.5 py-0.5 rounded-lg bg-amber-500/25 hover:bg-amber-500/40 text-amber-200 text-[11px] font-bold flex items-center gap-1 transition-all disabled:opacity-50"
+                title="Refresh developer data"
+              >
+                <RefreshCw className={`w-3 h-3 text-amber-300 ${isRefreshing ? 'animate-spin' : ''}`} />
+                <span>Refresh</span>
+              </button>
             </div>
           )}
 
           {fromCache && !stale && (
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[11px] font-semibold">
-              <Database className="w-3 h-3 text-emerald-400 shrink-0" />
+            <div className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
+              <Database className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               <span>DB Cached</span>
             </div>
           )}
 
-          <button
-            onClick={handleManualRefresh}
-            disabled={isRefreshing}
-            className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-semibold border border-slate-800 transition-all disabled:opacity-50"
-            title="Force refresh data from GitHub API"
-          >
-            <RefreshCw className={`w-3.5 h-3.5 text-indigo-400 ${isRefreshing ? 'animate-spin' : ''}`} />
-            <span>{isRefreshing ? 'Refreshing...' : 'Refresh'}</span>
-          </button>
+          {!stale && (
+            <button
+              onClick={handleManualRefresh}
+              disabled={isRefreshing}
+              className="flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-semibold border border-slate-800 transition-all disabled:opacity-50"
+              title="Force refresh data from GitHub API"
+            >
+              <RefreshCw className={`w-3.5 h-3.5 text-indigo-400 ${isRefreshing ? 'animate-spin' : ''}`} />
+              <span>{isRefreshing ? 'Refreshing...' : 'Refresh'}</span>
+            </button>
+          )}
 
           <button
             onClick={handleCompare}
@@ -287,41 +298,49 @@ export const DeveloperProfile: React.FC = () => {
       </div>
 
       {/* Aggregate Metrics Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
-        <div className="glass-card stat-card-gradient p-4 sm:p-5 rounded-2xl border border-slate-800/80">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Followers</span>
-            <Users className="w-3.5 h-3.5 text-indigo-400" />
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        <div className="glass-card stat-card-gradient p-4 sm:p-5 rounded-2xl border border-slate-800/80 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-300 mb-2.5">
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-300">Followers</span>
+            <div className="w-7 h-7 rounded-lg bg-indigo-500/15 text-indigo-400 flex items-center justify-center shrink-0">
+              <Users className="w-4 h-4" />
+            </div>
           </div>
           <div className="text-xl sm:text-3xl font-black text-white font-mono truncate">
             {developer.followers.toLocaleString()}
           </div>
         </div>
 
-        <div className="glass-card stat-card-gradient p-4 sm:p-5 rounded-2xl border border-slate-800/80">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Public Repos</span>
-            <BookMarked className="w-3.5 h-3.5 text-cyan-400" />
+        <div className="glass-card stat-card-gradient p-4 sm:p-5 rounded-2xl border border-slate-800/80 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-300 mb-2.5">
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-cyan-300">Public Repos</span>
+            <div className="w-7 h-7 rounded-lg bg-cyan-500/15 text-cyan-400 flex items-center justify-center shrink-0">
+              <BookMarked className="w-4 h-4" />
+            </div>
           </div>
           <div className="text-xl sm:text-3xl font-black text-white font-mono truncate">
             {developer.public_repos.toLocaleString()}
           </div>
         </div>
 
-        <div className="glass-card stat-card-gradient p-4 sm:p-5 rounded-2xl border border-slate-800/80">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-300">Total Stars</span>
-            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+        <div className="glass-card stat-card-gradient p-4 sm:p-5 rounded-2xl border border-slate-800/80 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-300 mb-2.5">
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-300">Total Stars</span>
+            <div className="w-7 h-7 rounded-lg bg-amber-500/15 text-amber-400 flex items-center justify-center shrink-0">
+              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+            </div>
           </div>
           <div className="text-xl sm:text-3xl font-black text-amber-400 font-mono truncate">
             {developer.total_stars.toLocaleString()}
           </div>
         </div>
 
-        <div className="glass-card stat-card-gradient p-4 sm:p-5 rounded-2xl border border-slate-800/80">
-          <div className="flex items-center justify-between text-slate-400 mb-2">
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider">Commits</span>
-            <Code className="w-3.5 h-3.5 text-purple-400" />
+        <div className="glass-card stat-card-gradient p-4 sm:p-5 rounded-2xl border border-slate-800/80 flex flex-col justify-between">
+          <div className="flex items-center justify-between text-slate-300 mb-2.5">
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-purple-300">Sampled Commits</span>
+            <div className="w-7 h-7 rounded-lg bg-purple-500/15 text-purple-400 flex items-center justify-center shrink-0">
+              <Code className="w-4 h-4" />
+            </div>
           </div>
           <div className="text-xl sm:text-3xl font-black text-white font-mono truncate">
             {developer.commit_activity?.totalSampledCommits?.toLocaleString() || 0}
@@ -367,15 +386,18 @@ export const DeveloperProfile: React.FC = () => {
                     <RechartsTooltip
                       formatter={(val: number) => {
                         const pct = totalBytes > 0 ? ((val / totalBytes) * 100).toFixed(1) : '0';
-                        return [`${pct}% (${(val / 1024).toFixed(1)} KB)`, 'Share'];
+                        return [`${pct}% (${(val / 1024).toFixed(1)} KB)`, 'Language Share'];
                       }}
                       contentStyle={{
-                        backgroundColor: '#0D1322',
-                        border: '1px solid #374151',
-                        borderRadius: '0.75rem',
-                        color: '#fff',
+                        backgroundColor: '#0F172A',
+                        border: '1px solid #334155',
+                        borderRadius: '0.875rem',
+                        color: '#F8FAFC',
                         fontSize: '0.75rem',
+                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
+                        padding: '8px 12px',
                       }}
+                      itemStyle={{ color: '#F8FAFC' }}
                     />
                   </PieChart>
                 </ResponsiveContainer>
@@ -395,7 +417,7 @@ export const DeveloperProfile: React.FC = () => {
                         style={{ backgroundColor: LANGUAGE_COLORS[idx % LANGUAGE_COLORS.length] }}
                       ></span>
                       <span className="font-medium text-slate-200">{lang.name}</span>
-                      <span className="text-slate-500 font-mono text-[10px]">{pct}%</span>
+                      <span className="text-slate-400 font-mono text-[10px]">{pct}%</span>
                     </div>
                   );
                 })}
@@ -439,12 +461,15 @@ export const DeveloperProfile: React.FC = () => {
                     <YAxis stroke="#64748B" fontSize={10} />
                     <RechartsTooltip
                       contentStyle={{
-                        backgroundColor: '#0D1322',
-                        border: '1px solid #374151',
-                        borderRadius: '0.75rem',
-                        color: '#fff',
+                        backgroundColor: '#0F172A',
+                        border: '1px solid #334155',
+                        borderRadius: '0.875rem',
+                        color: '#F8FAFC',
                         fontSize: '0.75rem',
+                        boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.5)',
+                        padding: '8px 12px',
                       }}
+                      itemStyle={{ color: '#F8FAFC' }}
                       labelFormatter={(label) => `Date: ${label}`}
                     />
                     <Area

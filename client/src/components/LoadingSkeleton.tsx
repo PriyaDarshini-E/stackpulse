@@ -61,3 +61,37 @@ export const ProfileSkeleton: React.FC = () => {
     </div>
   );
 };
+
+export const CompareSkeleton: React.FC = () => {
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 animate-pulse space-y-6">
+      {/* Header Skeleton */}
+      <div className="h-8 w-64 bg-slate-800 rounded-xl"></div>
+      
+      {/* Selector Box Skeleton */}
+      <div className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
+        <div className="h-10 bg-slate-800/80 rounded-xl w-full"></div>
+        <div className="flex gap-2">
+          <div className="h-7 w-24 bg-slate-800 rounded-xl"></div>
+          <div className="h-7 w-24 bg-slate-800 rounded-xl"></div>
+          <div className="h-7 w-24 bg-slate-800 rounded-xl"></div>
+        </div>
+      </div>
+
+      {/* Table Skeleton */}
+      <div className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
+        <div className="h-10 bg-slate-800/60 rounded-xl w-full"></div>
+        <div className="h-8 bg-slate-800/40 rounded-lg w-full"></div>
+        <div className="h-8 bg-slate-800/40 rounded-lg w-full"></div>
+        <div className="h-8 bg-slate-800/40 rounded-lg w-full"></div>
+        <div className="h-8 bg-slate-800/40 rounded-lg w-full"></div>
+      </div>
+
+      {/* Charts Skeleton */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="glass-panel p-6 rounded-3xl border border-slate-800 h-72"></div>
+        <div className="glass-panel p-6 rounded-3xl border border-slate-800 h-72"></div>
+      </div>
+    </div>
+  );
+};
