@@ -41,13 +41,13 @@ export const Navbar: React.FC = () => {
   return (
     <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/80 dark:bg-[#070A12]/80 border-b border-slate-200/90 dark:border-slate-800/80 transition-colors duration-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Brand Logo with animated glow */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/" className="flex items-center gap-2.5 group">
             <div className="relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 rounded-2xl blur-sm opacity-60 group-hover:opacity-100 transition duration-300"></div>
-              <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 via-indigo-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
-                <Activity className="w-5 h-5 text-white" />
+              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 rounded-xl blur-sm opacity-60 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-600 via-indigo-500 to-cyan-500 flex items-center justify-center shadow-md shadow-indigo-500/25 group-hover:scale-105 transition-transform">
+                <Activity className="w-4 h-4 text-white" />
               </div>
             </div>
             <div className="flex flex-col">
